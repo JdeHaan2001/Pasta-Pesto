@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 99daeafc9b463164c8309f5b10df1f31
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - botmk1: {instanceID: 0}
+  - botmk2: {instanceID: 0}
+  - botmk3: {instanceID: 0}
+  - granny: {instanceID: 0}
+  - child: {instanceID: 0}
+  - adult: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
