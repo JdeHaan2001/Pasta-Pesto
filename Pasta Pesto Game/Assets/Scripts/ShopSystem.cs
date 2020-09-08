@@ -8,10 +8,12 @@ using CodeMonkey.Utils;
 public class ShopSystem : MonoBehaviour
 {
     [Tooltip("The amount of money you have")] [SerializeField] private float moneyCount = 0f;
-    [Tooltip("The multiplier for upgrades")] [SerializeField] private float multiplier = 1.02f;
+    [Tooltip("The multiplier for upgrades")] [SerializeField] private float multiplier = 1.15f;
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
+    public GameObject PU;
+    PickUpSystem puSystem;
 
 
     //-------------------- Product Image --------------------//
@@ -56,6 +58,8 @@ public class ShopSystem : MonoBehaviour
         money = transform.Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
+
+        puSystem = PU.GetComponent<PickUpSystem>();
 
         // Start game with 0 "money"
         moneyCount = 0;
@@ -187,12 +191,22 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
-        // Testing purpose: Add money for testing
-        if (Input.GetKey(KeyCode.C)) moneyCount += 1000f;
-        //if (Input.GetKeyDown(KeyCode.C)) moneyCount += 10f;
-
+        GetMoney();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
+        SetMoney(moneyCount);
     }
 
+
+    // A simple getter-function to get PlayerMoney.
+    public float GetMoney()
+    {
+        return moneyCount;
+    }
+
+    // A simple setter-function to set PlayerMoney.
+    public void SetMoney(float pMoney)
+    {
+        moneyCount = puSystem.GetPlayerMoney();
+    }
 }

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PickUpSystem : MonoBehaviour
 {
-    [SerializeField]
-    private float _moneyTotal = 0f;
+    private GameObject _menu;
+
+    private void Awake()
+    {
+        _menu = GameObject.Find("UI_Shop");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,14 +23,7 @@ public class PickUpSystem : MonoBehaviour
 
     private void pickUp(float pMoney, GameObject pGameObject)
     {
-        _moneyTotal += pMoney;
+        _menu.GetComponent<ShopSystem>().SetMoneyAmount(pMoney);
         Destroy(pGameObject);
-    }
-
-    private void Update()
-    {
-        // Used for testing
-        if (Input.GetKeyDown(KeyCode.C))
-            _moneyTotal += 50f;
     }
 }

@@ -5,7 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/ShopSystem.unity
-    guid: ed91cd606e01af5498ba783e04147e05
+    path: Assets/Scenes/_LoseScreen.unity
+    guid: d61fd83a0c1f3434f9c2941e27f553f4
+  - enabled: 1
+    path: Assets/Scenes/_VictoryScreen.unity
+    guid: e6ebd1e68d52a544ca0f3779005c6730
+  - enabled: 1
+    path: Assets/Scenes/Level_1.unity
+    guid: 085219f927014174782812cde745708f
+  - enabled: 1
+    path: Assets/Scenes/Level_2.unity
+    guid: 1b30d7a1789d6bf44a5d9f91003aff2a
+  - enabled: 1
+    path: Assets/Scenes/Level_3.unity
+    guid: 3634f05d0d9b03e47abd61f1ba4619fe
+  - enabled: 1
+    path: Assets/Scenes/Level_4.unity
+    guid: f61d9d8821f120640950df4b94e3c9a3
+  - enabled: 1
+    path: Assets/Scenes/Level_5.unity
+    guid: fad1817cf2c0f4d4cba2625e7331a666
   m_configObjects: {}
