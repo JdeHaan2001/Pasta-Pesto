@@ -8,7 +8,7 @@ using CodeMonkey.Utils;
 public class ShopSystem : MonoBehaviour
 {
     [Tooltip("The amount of money you have")] [SerializeField] private float moneyCount = 0f;
-    [Tooltip("The multiplier for upgrades")] [SerializeField] private float multiplier = 1.15f;
+    [Tooltip("The multiplier for upgrades")] [SerializeField] private float multiplier = 1.02f;
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
@@ -187,22 +187,12 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
-        GetMoney();
+        // Testing purpose: Add money for testing
+        if (Input.GetKey(KeyCode.C)) moneyCount += 1000f;
+        //if (Input.GetKeyDown(KeyCode.C)) moneyCount += 10f;
+
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        //SetMoney(moneyCount);
     }
 
-
-    // A simple getter-function to get PlayerMoney.
-    public float GetMoney()
-    {
-        return moneyCount;
-    }
-
-    // A simple setter-function to set PlayerMoney.
-    public void SetMoneyAmount(float pMoneyAmount)
-    {
-        moneyCount += pMoneyAmount;
-    }
 }
