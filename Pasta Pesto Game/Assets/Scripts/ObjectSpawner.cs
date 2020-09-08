@@ -44,27 +44,25 @@ public class ObjectSpawner : MonoBehaviour
     private void spawnTrash()
     {
 
-        Debug.Log(this.transform.position.x + " : " + this.transform.position.z);
-
-        float pX = this.transform.position.x + Random.Range(-2, 2);
+        float pX = gameObject.transform.position.x + Random.Range(-2, 2);
         float pY = SpawnObject.transform.localScale.y / 2;
-        float pZ = this.transform.position.z + Random.Range(-2, 2);
+        float pZ = gameObject.transform.position.y + Random.Range(-2, 2);
 
         float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
 
-        //if (distance < pY)
-        //{
-        //    if (distance > 0)
-        //    {
-        //        pX += pY;
-        //        pZ += pY;
-        //    }
-        //    else
-        //    {
-        //        pX -= pY;
-        //        pZ -= pY;
-        //    }
-        //}
+        if (distance < pY)
+        {
+            if (distance > 0)
+            {
+                pX += pY;
+                pZ += pY;
+            }
+            else
+            {
+                pX -= pY;
+                pZ -= pY;
+            }
+        }
 
         Instantiate(SpawnObject, new Vector3(pX, pY, pZ), Quaternion.identity);
         _currentObjectAmount++;

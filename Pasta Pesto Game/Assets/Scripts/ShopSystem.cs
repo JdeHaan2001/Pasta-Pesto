@@ -13,6 +13,7 @@ public class ShopSystem : MonoBehaviour
     private Transform container;
     private Transform money;
 
+
     //-------------------- Product Image --------------------//
     public Sprite item1Image;
     public Sprite item2Image;
@@ -49,17 +50,15 @@ public class ShopSystem : MonoBehaviour
     private int item6Count = 0;
     private int item7Count = 0;
 
-    
-
     void Awake()
     {
         // Assign the corresponding gameObject to the Transform variables.
         money = transform.Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-        
+
         // Start game with 0 "money"
-        moneyCount = 0f;
+        moneyCount = 0;
     }
 
     private void Start()
@@ -83,11 +82,6 @@ public class ShopSystem : MonoBehaviour
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
-    }
-
-    public void SetMoneyAmount(float pMoneyAmount)
-    {
-        moneyCount += pMoneyAmount;
     }
 
     // Create an item for in the store -> Image, Name, Cost, Position
