@@ -201,12 +201,21 @@ public class ShopSystem : MonoBehaviour
 
     // A simple setter-function to set PlayerMoney.
     public void SetMoneyAmount(float pMoney)
+<<<<<<< Updated upstream
     {
         moneyCount += pMoney;
     }
 
     public void ResetMoney()
     {
+=======
+    {
+        moneyCount += pMoney;
+    }
+
+    public void ResetMoney()
+    {
+>>>>>>> Stashed changes
         moneyCount = 0f;
     }
 }
