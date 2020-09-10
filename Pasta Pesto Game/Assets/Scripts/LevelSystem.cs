@@ -9,6 +9,8 @@ public class LevelSystem : MonoBehaviour
     private bool dayHasEnded;
     private bool hasCompletedLevel;
 
+    private const float DAY_IN_SECONDS = 15f;
+    private float day;
     private float rotateSpeed = 30f;
     private float dayTimer = 0f;
     private int currentLevel = 1;
@@ -26,12 +28,18 @@ public class LevelSystem : MonoBehaviour
 
     public GameObject DayNightCycle;
     public GameObject UI;
+    public GameObject Clock;
     private ShopSystem shopScript;
+    private Transform hourHand;
+    private Transform minuteHand;
 
     private void Awake()
     {
         shopScript = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
+
+        hourHand = Clock.transform.Find("hourHand");
+        minuteHand = Clock.transform.Find("minuteHand");
     }
 
     private void Update()
@@ -40,7 +48,8 @@ public class LevelSystem : MonoBehaviour
         CheckScoreGoal();
         addTime();
         setCurrentGoalAndLevel();
-        UpdateDayCycle();
+
+        UpdateClock();
     }
 
     private void addTime()
@@ -151,9 +160,16 @@ public class LevelSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N)) dayTimer = 18500;
     }
 
-    private void UpdateDayCycle()
+    private void UpdateClock()
     {
-        DayNightCycle.transform.RotateAround(Vector3.zero, Vector3.back, rotateSpeed * Time.deltaTime);
-        DayNightCycle.transform.LookAt(Vector3.zero);
+        day += Time.deltaTime / DAY_IN_SECONDS;
+        float dayNormalized = day % 1f;
+        float dayHours = 24f;
+        float dayRotation = 360f;
+        float cycleOffset = 50f;
+
+        hourHand.eulerAngles = new Vector3(0, 0, -dayNormalized * (dayRotation*2));
+        minuteHand.eulerAngles = new Vector3(0, 0, -dayNormalized * dayRotation * dayHours);
+        DayNightCycle.transform.eulerAngles = new Vector3((-dayNormalized * dayRotation) -cycleOffset, 90, 0);
     }
 }

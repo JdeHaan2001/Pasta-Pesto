@@ -207,6 +207,6 @@ public class ShopSystem : MonoBehaviour
     // A simple setter-function to set PlayerMoney.
     public void SetMoney(float pMoney)
     {
-        moneyCount = puSystem.GetPlayerMoney();
+        moneyCount += pMoney;
     }
 }
