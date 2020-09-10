@@ -145,7 +145,7 @@ public class LevelSystem : MonoBehaviour
         hasCompletedLevel = false;
         dayHasEnded = false;
         hasEnoughPoints = false;
-        shopScript.SetMoney(0);
+        shopScript.ResetMoney();
         dayTimer = 0f;
     }
 

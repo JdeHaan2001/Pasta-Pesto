@@ -12,8 +12,6 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
-    public GameObject PU;
-    PickUpSystem puSystem;
 
 
     //-------------------- Product Image --------------------//
@@ -58,8 +56,6 @@ public class ShopSystem : MonoBehaviour
         money = transform.Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-
-        puSystem = PU.GetComponent<PickUpSystem>();
 
         // Start game with 0 "money"
         moneyCount = 0;
@@ -194,7 +190,6 @@ public class ShopSystem : MonoBehaviour
         GetMoney();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        SetMoney(moneyCount);
     }
 
 
@@ -205,8 +200,13 @@ public class ShopSystem : MonoBehaviour
     }
 
     // A simple setter-function to set PlayerMoney.
-    public void SetMoney(float pMoney)
+    public void SetMoneyAmount(float pMoney)
     {
         moneyCount += pMoney;
+    }
+
+    public void ResetMoney()
+    {
+        moneyCount = 0f;
     }
 }
