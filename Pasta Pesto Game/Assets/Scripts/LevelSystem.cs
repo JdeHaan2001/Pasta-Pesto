@@ -9,8 +9,15 @@ public class LevelSystem : MonoBehaviour
     private bool dayHasEnded;
     private bool hasCompletedLevel;
 
+<<<<<<< Updated upstream
     private float rotateSpeed = 30f;
+=======
+    private const float DAY_IN_SECONDS = 30f;
+    private const float START_DAY_AT = 0.375f;
+    private float day;
+>>>>>>> Stashed changes
     private float dayTimer = 0f;
+    private int currentTime;
     private int currentLevel = 1;
     private int dayLength = 12000;
     // Level scores - ADJUST WHERE NEEDED
@@ -30,6 +37,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Awake()
     {
+        day = START_DAY_AT;
         shopScript = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
     }
@@ -153,7 +161,35 @@ public class LevelSystem : MonoBehaviour
 
     private void UpdateDayCycle()
     {
+<<<<<<< Updated upstream
         DayNightCycle.transform.RotateAround(Vector3.zero, Vector3.back, rotateSpeed * Time.deltaTime);
         DayNightCycle.transform.LookAt(Vector3.zero);
+=======
+        day += Time.deltaTime / DAY_IN_SECONDS;
+        float dayNormalized = day % 1f;
+        float dayHours = 24f;
+        float rot24Hrs = 360f;
+        float rot12Hrs = 2 * rot24Hrs;
+        float cycleOffset = 50f;
+
+
+        hourHand.eulerAngles = new Vector3(0, 0, -dayNormalized * rot12Hrs);
+        minuteHand.eulerAngles = new Vector3(0, 0, -dayNormalized * rot24Hrs * dayHours);
+
+        float sunRotation = (-dayNormalized * rot24Hrs) - cycleOffset;
+
+        DayNightCycle.transform.eulerAngles = new Vector3(sunRotation, 90, 0);
+
+        if (sunRotation > 180f && sunRotation < 135f) currentTime = 1;
+        if (sunRotation > 135f && sunRotation < 90f) currentTime = 2;
+        if (sunRotation > 90f && sunRotation < 45f) currentTime = 3;
+        if (sunRotation > 90f && sunRotation < 0f) currentTime = 4;
+    }
+
+    public float SetSpawnrate(float pValue)
+    {
+        pValue = currentTime;
+        return pValue;
+>>>>>>> Stashed changes
     }
 }
