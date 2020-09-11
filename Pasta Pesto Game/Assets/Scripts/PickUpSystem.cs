@@ -56,7 +56,6 @@ public class PickUpSystem : MonoBehaviour
 
     private void pickUp(float pMoney, GameObject pGameObject)
     {
-        _menu.GetComponent<ShopSystem>().SetMoneyAmount(pMoney);
         Destroy(pGameObject);
     }
 }

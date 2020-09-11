@@ -20,26 +20,20 @@ public class ShopSystem : MonoBehaviour
     public Sprite item3Image;
     public Sprite item4Image;
     public Sprite item5Image;
-    public Sprite item6Image;
-    public Sprite item7Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "PlastiBot mk1";
-    private string item2Name = "PlastiBot mk2";
-    private string item3Name = "PlastiBot mk3";
-    private string item4Name = "Facebook Ad";
-    private string item5Name = "Nickelodeon Ad";
-    private string item6Name = "Youtube Ad";
-    private string item7Name = "Twitter Ad";
+    private string item1Name = "It's rewind time";
+    private string item2Name = "Gotta go fast";
+    private string item3Name = "Increased Pockets";
+    private string item4Name = "Advertisements";
+    private string item5Name = "Plastic Monopoly";
 
     //-------------------- Shop price --------------------//
-    private float item1Price = 25f;
-    private float item2Price = 100f;
-    private float item3Price = 350f;
-    private float item4Price = 50f;
-    private float item5Price = 175f;
-    private float item6Price = 500f;
-    private float item7Price = 1800f;
+    private float item1Price = 30f;
+    private float item2Price = 10f;
+    private float item3Price = 25f;
+    private float item4Price = 100f;
+    private float item5Price = 15f;
 
     //-------------------- Product count --------------------//
     private int item1Count = 0;
@@ -47,8 +41,6 @@ public class ShopSystem : MonoBehaviour
     private int item3Count = 0;
     private int item4Count = 0;
     private int item5Count = 0;
-    private int item6Count = 0;
-    private int item7Count = 0;
 
     void Awake()
     {
@@ -77,8 +69,6 @@ public class ShopSystem : MonoBehaviour
         createItemSlot(item3Image, item3Name, item3Price.ToString(), 3);
         createItemSlot(item4Image, item4Name, item4Price.ToString(), 4);
         createItemSlot(item5Image, item5Name, item5Price.ToString(), 5);
-        createItemSlot(item6Image, item6Name, item6Price.ToString(), 6);
-        createItemSlot(item7Image, item7Name, item7Price.ToString(), 7);
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
@@ -159,26 +149,6 @@ public class ShopSystem : MonoBehaviour
                         Debug.Log("ADDED 1 NICKELODEON AD! TOTAL IS NOW: " + item5Count);
                         item5Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item5Price.ToString("F2"));
-                    }
-                    break;
-                case 6:
-                    if (moneyCount >= item6Price)
-                    {
-                        item6Count += 1;
-                        moneyCount -= item6Price;
-                        Debug.Log("ADDED 1 YOUTUBE AD! TOTAL IS NOW: " + item6Count);
-                        item6Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item6Price.ToString("F2"));
-                    }
-                    break;
-                case 7:
-                    if (moneyCount >= item7Price)
-                    {
-                        item7Count += 1;
-                        moneyCount -= item7Price;
-                        Debug.Log("ADDED 1 TWITTER AD! TOTAL IS NOW: " + item7Count);
-                        item7Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item7Price.ToString("F2"));
                     }
                     break;
             }
