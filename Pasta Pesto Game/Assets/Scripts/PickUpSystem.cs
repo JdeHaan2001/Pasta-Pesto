@@ -18,13 +18,15 @@ public class PickUpSystem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        handlePickUpTags(other);
+        if(_currentPickUpAmount < _maxPickUpAmount)
+            handlePickUpTags(other);
         
     }
     private void OnTriggerStay(Collider other)
     {
         handleTrashCan(other);
     }
+
     private void handleTrashCan(Collider other)
     {
         if (other.tag == "Trashcan" && Input.GetKeyDown(KeyCode.E))
