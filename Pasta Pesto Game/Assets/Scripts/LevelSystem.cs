@@ -9,7 +9,7 @@ public class LevelSystem : MonoBehaviour
     private bool dayHasEnded;
     private bool hasCompletedLevel;
 
-    private const float DAY_IN_SECONDS = 15f;
+    private const float DAY_IN_SECONDS = 150f;
     private float day;
     private float rotateSpeed = 30f;
     private float dayTimer = 0f;
@@ -35,6 +35,8 @@ public class LevelSystem : MonoBehaviour
 
     private void Awake()
     {
+        day += 0.375f;
+
         shopScript = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
 
@@ -165,11 +167,15 @@ public class LevelSystem : MonoBehaviour
         day += Time.deltaTime / DAY_IN_SECONDS;
         float dayNormalized = day % 1f;
         float dayHours = 24f;
-        float dayRotation = 360f;
+        float rot12Hrs = 360f;
+        float rot24Hrs = 720f;
         float cycleOffset = 50f;
 
-        hourHand.eulerAngles = new Vector3(0, 0, -dayNormalized * (dayRotation*2));
-        minuteHand.eulerAngles = new Vector3(0, 0, -dayNormalized * dayRotation * dayHours);
-        DayNightCycle.transform.eulerAngles = new Vector3((-dayNormalized * dayRotation) -cycleOffset, 90, 0);
+        hourHand.eulerAngles = new Vector3(0, 0, -dayNormalized * rot24Hrs);
+        minuteHand.eulerAngles = new Vector3(0, 0, -dayNormalized * rot12Hrs * dayHours);
+
+        float daylightRot = (-dayNormalized * rot12Hrs) - cycleOffset;
+
+        DayNightCycle.transform.eulerAngles = new Vector3(daylightRot, 90, 0);
     }
 }

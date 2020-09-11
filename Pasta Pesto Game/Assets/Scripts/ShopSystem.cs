@@ -187,6 +187,7 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("I WORK!");
         GetMoney();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
