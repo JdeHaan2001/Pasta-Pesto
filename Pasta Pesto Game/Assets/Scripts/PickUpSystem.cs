@@ -57,6 +57,21 @@ public class PickUpSystem : MonoBehaviour
             pickUp(plasticValue * 5, other.gameObject);
             _currentPickUpAmount++;
         }
+        else if (other.tag == "PickUp3")
+        {
+            pickUp(plasticValue * 8, other.gameObject);
+            _currentPickUpAmount++;
+        }
+        else if (other.tag == "PickUp4")
+        {
+            pickUp(plasticValue * 10, other.gameObject);
+            _currentPickUpAmount++;
+        }
+        else if (other.tag == "PickUp5")
+        {
+            pickUp(plasticValue * 15, other.gameObject);
+            _currentPickUpAmount++;
+        }
     }
 
     private void pickUp(float pMoney, GameObject pGameObject)

@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour
 {
     public const int maxObjectAmount = 10;
+
+    public List<GameObject> SpawnList;
+
     [SerializeField]
     private int _currentObjectAmount = 0;
     [SerializeField]
@@ -12,7 +16,7 @@ public class ObjectSpawner : MonoBehaviour
 
     public float WaitTime = 5f;
 
-    public GameObject SpawnObject;
+    //private GameObject SpawnObject;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +56,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void spawnTrash()
     {
-
+        GameObject SpawnObject = SpawnList[Random.Range(0, SpawnList.Count - 1)];
         float pX = gameObject.transform.position.x + Random.Range(-2, 2);
         //float pY = SpawnObject.transform.localScale.y / 2;
         float pY = 0.08f;
