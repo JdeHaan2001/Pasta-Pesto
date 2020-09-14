@@ -8,16 +8,16 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     private float _timer = 0f;
     private Animator anim;
+    private AIMovement AIMove;
 
     public float WaitTime = 5f;
-
-
 
     public GameObject SpawnObject;
 
     // Start is called before the first frame update
     void Start()
     {
+        AIMove = GetComponent<AIMovement>();
         anim = GetComponent<Animator>();
     }
 
@@ -30,8 +30,13 @@ public class ObjectSpawner : MonoBehaviour
             _timer = 0f;
             if (_currentObjectAmount < maxObjectAmount)
             {
-                anim.Play("ThrowTrash", 0, 0.5f);
+                anim.Play("Throw", 0, 0.5f);
                 spawnTrash();
+                AIMove.SetMoveDirection(Vector3.zero);
+                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+                {
+                    AIMove.SetMoveDirection(new Vector3(Random.Range(-1, 2) * AIMove.Speed, 0, Random.Range(-1, 2) * AIMove.Speed));
+                }
             }
         }
     }

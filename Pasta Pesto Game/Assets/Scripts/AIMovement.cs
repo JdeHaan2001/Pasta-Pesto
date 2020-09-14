@@ -58,4 +58,14 @@ public class AIMovement : MonoBehaviour
             }
         }
     }
+
+    public Vector3 GetMoveDirection()
+    {
+        return moveDirection;
+    }
+
+    public void SetMoveDirection(Vector3 pMoveDirection)
+    {
+        moveDirection = pMoveDirection;
+    }
 }
