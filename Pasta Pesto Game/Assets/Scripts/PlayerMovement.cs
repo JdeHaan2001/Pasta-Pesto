@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed = 5f;
+    [SerializeField] private float speed = 5f;
 
     private Animator anim;
     private Rigidbody rb;
@@ -19,11 +19,21 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 moveVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        rb.velocity = moveVec * Speed;
+        rb.velocity = moveVec * speed;
         rb.rotation = Quaternion.LookRotation(moveVec);
         if (rb.velocity != Vector3.zero)
             anim.SetBool("IsWalking", true);
         else
             anim.SetBool("IsWalking", false);
+    }
+
+    public void SetPlayerSpeed(float pSpeed)
+    {
+        speed = pSpeed;
+    }
+
+    public float GetPlayerSpeed()
+    {
+        return speed;
     }
 }

@@ -12,6 +12,16 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
+    private PickUpSystem puSystem;
+    private PlayerMovement plMovement;
+    private LevelSystem lvlSystem;
+    public GameObject player;
+
+
+    private float valueIncrease = 0.5f;
+    private float speedIncrease = 0.5f;
+    private float timeDecrease = 0.125f;
+    private int carryIncrease = 2;
 
 
     //-------------------- Product Image --------------------//
@@ -48,6 +58,9 @@ public class ShopSystem : MonoBehaviour
         money = transform.Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
+        puSystem = player.GetComponent<PickUpSystem>();
+        plMovement = player.GetComponent<PlayerMovement>();
+        lvlSystem = player.GetComponent<LevelSystem>();
 
         // Start game with 0 "money"
         moneyCount = 0;
@@ -96,7 +109,6 @@ public class ShopSystem : MonoBehaviour
             /// This is where the buttons get value. They base the product off of the positionIndex of the shop.
             /// If you change the indexNumbers, make sure to change them here too.
             /// To add a new product, simply extend the code with another case (copy+paste an existing one) and change the names.
-            /// Try using logical names so everyone can understand them.
             /// </summary>
 
             switch (positionIndex) 
@@ -104,9 +116,11 @@ public class ShopSystem : MonoBehaviour
                 case 1:
                     if (moneyCount >= item1Price)
                     {
-                        item1Count += 1;
+                        float pDay = lvlSystem.GetDayTime();
+                        pDay -= timeDecrease;
+                        lvlSystem.SetDayTime(pDay);
                         moneyCount -= item1Price;
-                        Debug.Log("ADDED 1 PLASTIBOT MK1! TOTAL IS NOW: " + item1Count);
+                        Debug.Log("Set the clock back 3 hours!");
                         item1Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item1Price.ToString("F2"));
                     }
@@ -114,9 +128,11 @@ public class ShopSystem : MonoBehaviour
                 case 2:
                     if (moneyCount >= item2Price)
                     {
-                        item2Count += 1;
+                        float pSpeed = plMovement.GetPlayerSpeed();
+                        pSpeed += speedIncrease;
+                        plMovement.SetPlayerSpeed(pSpeed);
                         moneyCount -= item2Price;
-                        Debug.Log("ADDED 1 PLASTIBOT MK2! TOTAL IS NOW: " + item2Count);
+                        Debug.Log("Increased the movementspeed to " + pSpeed + "!");
                         item2Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item2Price.ToString("F2"));
                     }
@@ -124,9 +140,11 @@ public class ShopSystem : MonoBehaviour
                 case 3:
                     if (moneyCount >= item3Price)
                     {
-                        item3Count += 1;
+                        int maxCarry = puSystem.GetMaxCarry();
+                        maxCarry += carryIncrease;
+                        puSystem.SetMaxCarry(maxCarry);
                         moneyCount -= item3Price;
-                        Debug.Log("ADDED 1 PLASTIBOT MK3! TOTAL IS NOW: " + item3Count);
+                        Debug.Log("You can now hold " + maxCarry + "!");
                         item3Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item3Price.ToString("F2"));
                     }
@@ -136,7 +154,7 @@ public class ShopSystem : MonoBehaviour
                     {
                         item4Count += 1;
                         moneyCount -= item4Price;
-                        Debug.Log("ADDED 1 FACEBOOK AD! TOTAL IS NOW: " + item4Count);
+                        Debug.Log("Your advertisement got people to help you!");
                         item4Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item4Price.ToString("F2"));
                     }
@@ -144,9 +162,11 @@ public class ShopSystem : MonoBehaviour
                 case 5:
                     if (moneyCount >= item5Price)
                     {
-                        item5Count += 1;
+                        float pValue = puSystem.GetPlasticWorth();
+                        pValue += valueIncrease;
+                        puSystem.SetPlasticWorth(pValue);
                         moneyCount -= item5Price;
-                        Debug.Log("ADDED 1 NICKELODEON AD! TOTAL IS NOW: " + item5Count);
+                        Debug.Log("Plastic has become more valuable! Each plastic is now worth " + pValue + "!");
                         item5Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item5Price.ToString("F2"));
                     }
@@ -168,13 +188,12 @@ public class ShopSystem : MonoBehaviour
     {
         return moneyCount;
     }
-
     // A simple setter-function to set PlayerMoney.
     public void SetMoneyAmount(float pMoney)
     {
         moneyCount += pMoney;
     }
-
+    // A simple reset-function for resetting PlayerMoney.
     public void ResetMoney()
     {
         moneyCount = 0f;

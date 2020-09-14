@@ -8,7 +8,7 @@ public class PickUpSystem : MonoBehaviour
     private ShopSystem shopSystem;
 
     [SerializeField]
-    private const int _maxPickUpAmount = 10;
+    private int _maxPickUpAmount = 10;
     [SerializeField]
     private int _currentPickUpAmount = 0;
 
@@ -77,5 +77,26 @@ public class PickUpSystem : MonoBehaviour
     private void pickUp(float pMoney, GameObject pGameObject)
     {
         Destroy(pGameObject);
+    }
+
+
+    public void SetPlasticWorth(float pValue)
+    {
+        plasticValue = pValue;
+    }
+
+    public float GetPlasticWorth()
+    {
+        return plasticValue;
+    }
+
+    public void SetMaxCarry(int pMax)
+    {
+        _maxPickUpAmount = pMax;
+    }
+
+    public int GetMaxCarry()
+    {
+        return _maxPickUpAmount;
     }
 }

@@ -79,6 +79,7 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         Instantiate(SpawnObject, new Vector3(pX, pY, pZ), Quaternion.identity);
+        SpawnObject.tag = "PickUp";
         _currentObjectAmount++;
         WaitTime = Random.Range(5f, 10f);
     }
