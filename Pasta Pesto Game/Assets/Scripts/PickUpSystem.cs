@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickUpSystem : MonoBehaviour
 {
     private GameObject _menu;
+    private Animator anim;
 
     [SerializeField]
     private const int _maxPickUpAmount = 10;
@@ -13,6 +14,7 @@ public class PickUpSystem : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         _menu = GameObject.Find("UI_Shop");
     }
 

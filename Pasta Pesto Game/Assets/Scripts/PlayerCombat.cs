@@ -8,11 +8,18 @@ public class PlayerCombat : MonoBehaviour
     public float AttackRange = 0.5f;
     public LayerMask EnemyLayers;
 
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            anim.Play("Punch", 0, 0.65f);
             attack();
         }
     }
