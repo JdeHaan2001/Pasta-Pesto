@@ -5,15 +5,19 @@ using UnityEngine;
 public class PickUpSystem : MonoBehaviour
 {
     private GameObject _menu;
+    private ShopSystem shopSystem;
 
     [SerializeField]
     private const int _maxPickUpAmount = 10;
     [SerializeField]
     private int _currentPickUpAmount = 0;
 
+    private float plasticValue = 1f;
+
     private void Awake()
     {
         _menu = GameObject.Find("UI_Shop");
+        shopSystem = _menu.GetComponent<ShopSystem>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,6 +35,7 @@ public class PickUpSystem : MonoBehaviour
     {
         if (other.tag == "Trashcan" && Input.GetKeyDown(KeyCode.E))
         {
+            shopSystem.SetMoneyAmount(plasticValue * _currentPickUpAmount);
             _currentPickUpAmount = 0;
         }
     }
@@ -39,17 +44,17 @@ public class PickUpSystem : MonoBehaviour
     {
         if (other.tag == "PickUp")
         {
-            pickUp(10, other.gameObject);
+            pickUp(plasticValue, other.gameObject);
             _currentPickUpAmount++;
         }
         else if (other.tag == "PickUp1")
         {
-            pickUp(25, other.gameObject);
+            pickUp(plasticValue * 2, other.gameObject);
             _currentPickUpAmount++;
         }
         else if (other.tag == "PickUp2")
         {
-            pickUp(50, other.gameObject);
+            pickUp(plasticValue * 5, other.gameObject);
             _currentPickUpAmount++;
         }
     }
