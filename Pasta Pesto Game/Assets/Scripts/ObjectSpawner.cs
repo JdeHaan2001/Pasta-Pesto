@@ -7,6 +7,8 @@ public class ObjectSpawner : MonoBehaviour
     private int _currentObjectAmount = 0;
     [SerializeField]
     private float _timer = 0f;
+    private Animator anim;
+
     public float WaitTime = 5f;
 
 
@@ -16,6 +18,7 @@ public class ObjectSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,6 +30,7 @@ public class ObjectSpawner : MonoBehaviour
             _timer = 0f;
             if (_currentObjectAmount < maxObjectAmount)
             {
+                anim.Play("ThrowTrash", 0, 0.5f);
                 spawnTrash();
             }
         }
@@ -45,7 +49,8 @@ public class ObjectSpawner : MonoBehaviour
     {
 
         float pX = gameObject.transform.position.x + Random.Range(-2, 2);
-        float pY = SpawnObject.transform.localScale.y / 2;
+        //float pY = SpawnObject.transform.localScale.y / 2;
+        float pY = 0.08f;
         float pZ = gameObject.transform.position.z + Random.Range(-2, 2);
 
         float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
