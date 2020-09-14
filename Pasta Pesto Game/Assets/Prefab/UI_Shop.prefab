@@ -770,7 +770,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -12.7039795, y: 0, z: -26.007812, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1039,13 +1039,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyCount: 9949194
   multiplier: 1.02
+  player: {fileID: 0}
   item1Image: {fileID: 21300000, guid: 8f9f91a1bccbc7242b4c42bb7ae4e3d2, type: 3}
   item2Image: {fileID: 21300000, guid: 484708ad00772824c8ff678c35cd3ded, type: 3}
   item3Image: {fileID: 21300000, guid: a1159ed9b89dbe04ba0056251e64e58a, type: 3}
   item4Image: {fileID: 21300000, guid: 8a394ad1372b8294f99ad9d2c33f59ad, type: 3}
   item5Image: {fileID: 21300000, guid: e36d0c8caa3e8a64187ebb71b1c589b6, type: 3}
-  item6Image: {fileID: 21300000, guid: aea0e8f6213c7c44cb8c3e6204459bcc, type: 3}
-  item7Image: {fileID: 0}
 --- !u!1 &9019374528944017527
 GameObject:
   m_ObjectHideFlags: 0

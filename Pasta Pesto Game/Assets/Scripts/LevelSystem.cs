@@ -178,4 +178,14 @@ public class LevelSystem : MonoBehaviour
 
         DayNightCycle.transform.eulerAngles = new Vector3(daylightRot, 90, 0);
     }
+
+    public void SetDayTime(float pDay)
+    {
+        day = pDay;
+    }
+
+    public float GetDayTime()
+    {
+        return day;
+    }
 }
