@@ -57,10 +57,10 @@ public class ObjectSpawner : MonoBehaviour
     private void spawnTrash()
     {
         GameObject SpawnObject = SpawnList[Random.Range(0, SpawnList.Count - 1)];
-        float pX = gameObject.transform.position.x + Random.Range(-2, 2);
+        float pX = gameObject.transform.position.x;
         //float pY = SpawnObject.transform.localScale.y / 2;
         float pY = 0.08f;
-        float pZ = gameObject.transform.position.z + Random.Range(-2, 2);
+        float pZ = gameObject.transform.position.z;
 
         float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
 
