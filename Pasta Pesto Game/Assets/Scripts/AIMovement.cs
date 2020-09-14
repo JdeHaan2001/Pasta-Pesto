@@ -12,6 +12,7 @@ public class AIMovement : MonoBehaviour
     private float MovingTimer;
 
     private Rigidbody rb;
+    private Animator anim;
 
     private bool _isMoving;
 
@@ -23,6 +24,7 @@ public class AIMovement : MonoBehaviour
         WaitMoveTimer = WaitMoveAmount;
         MovingTimer = MovingAmount;
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class AIMovement : MonoBehaviour
                 _isMoving = false;
                 //WaitMoveTimer = Random.Range(0f, 1f);
                 WaitMoveTimer = 0f;
+                anim.SetBool("IsWalking", false);
             }
         }
         else
@@ -51,6 +54,7 @@ public class AIMovement : MonoBehaviour
 
                 moveDirection = new Vector3(Random.Range(-1, 2) * Speed, 0, Random.Range(-1, 2) * Speed);
                 rb.rotation = Quaternion.LookRotation(moveDirection);
+                anim.SetBool("IsWalking", true);
             }
         }
     }
