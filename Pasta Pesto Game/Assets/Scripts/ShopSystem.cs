@@ -20,6 +20,7 @@ public class ShopSystem : MonoBehaviour
     public GameObject player;
 
 
+    private float shopItemHeight = 50f;
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
@@ -48,13 +49,6 @@ public class ShopSystem : MonoBehaviour
     private float item4Price = 100f;
     private float item5Price = 15f;
 
-    //-------------------- Product count --------------------//
-    private int item1Count = 0;
-    private int item2Count = 0;
-    private int item3Count = 0;
-    private int item4Count = 0;
-    private int item5Count = 0;
-
     void Awake()
     {
         // Assign the corresponding gameObject to the Transform variables.
@@ -76,10 +70,9 @@ public class ShopSystem : MonoBehaviour
         // Add an item to the list of shopitems -> Image, Name, Cost, Position
         //-----------------------------------------------------------------------------------------
         // Simply add a new item by adding in a new line below, use the following template
-        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, item[X]Prie.ToString(), [next number]);
+        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, item[X]Price.ToString(), [next number]);
         // Make sure to also add the image above at (//-------------------- Product Image --------------------//)
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
-        // Make sure to also add the count above at (//-------------------- Product Count --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
         //-----------------------------------------------------------------------------------------
         createItemSlot(item1Image, item1Name, item1Price.ToString(), 1);
@@ -99,7 +92,6 @@ public class ShopSystem : MonoBehaviour
         RectTransform shopItemRectTransform = shopItemTemplate.GetComponent<RectTransform>();
 
         //Set the shop-position on screen.
-        float shopItemHeight = 50f;
         shopItemRectTransform.anchoredPosition = new Vector2(0, -shopItemHeight * positionIndex);
 
         // Change the text-fields and image
@@ -157,11 +149,7 @@ public class ShopSystem : MonoBehaviour
                 case 4:
                     if (moneyCount >= item4Price)
                     {
-                        item4Count += 1;
-                        moneyCount -= item4Price;
-                        Debug.Log("Your advertisement got people to help you!");
-                        item4Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item4Price.ToString("F2"));
+                        Debug.Log("This item still needs to be implemented!");
                     }
                     break;
                 case 5:
