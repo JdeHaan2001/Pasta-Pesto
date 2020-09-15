@@ -12,15 +12,13 @@ public class LevelSystem : MonoBehaviour
     private const float DAY_IN_SECONDS = 150f;
     private float day;
     private float rotateSpeed = 30f;
-    private float dayTimer = 0f;
     private int currentLevel = 1;
-    private int dayLength = 12000;
     // Level scores - ADJUST WHERE NEEDED
-    private int level1Goal = 50;
-    private int level2Goal = 125;
-    private int level3Goal = 250;
-    private int level4Goal = 750;
-    private int level5Goal = 1250;
+    private int level1Goal = 30;
+    private int level2Goal = 50;
+    private int level3Goal = 100;
+    private int level4Goal = 150;
+    private int level5Goal = 500;
 
     private int currentGoal;
 
@@ -48,16 +46,10 @@ public class LevelSystem : MonoBehaviour
     {
         currentScore = shopScript.GetMoney();
         CheckScoreGoal();
-        addTime();
+        checkEndDay();
         setCurrentGoalAndLevel();
 
         UpdateClock();
-    }
-
-    private void addTime()
-    {
-        if(!dayHasEnded) dayTimer += (1f * Time.deltaTime);
-        if(dayTimer >= dayLength) dayHasEnded = true;
     }
 
     private void setCurrentGoalAndLevel()
@@ -148,18 +140,11 @@ public class LevelSystem : MonoBehaviour
         dayHasEnded = false;
         hasEnoughPoints = false;
         shopScript.ResetMoney();
-        dayTimer = 0f;
     }
 
     public void ChangeScene(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
-    }
-
-    private void setTimeToGoal()
-    {
-        Debug.Log("Set time to: 17500");
-        if (Input.GetKeyDown(KeyCode.N)) dayTimer = 18500;
     }
 
     private void UpdateClock()
@@ -177,6 +162,12 @@ public class LevelSystem : MonoBehaviour
         float daylightRot = (-dayNormalized * rot12Hrs) - cycleOffset;
 
         DayNightCycle.transform.eulerAngles = new Vector3(daylightRot, 90, 0);
+    }
+
+    private void checkEndDay()
+    {
+        if (day >= 0.875f) dayHasEnded = true;
+        if (dayHasEnded && hasEnoughPoints) hasCompletedLevel = true;
     }
 
     public void SetDayTime(float pDay)
