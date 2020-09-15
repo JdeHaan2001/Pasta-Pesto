@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ObjectSpawner : MonoBehaviour
 {
     public const int maxObjectAmount = 10;
+
+    public List<GameObject> SpawnList;
+
     [SerializeField]
     private int _currentObjectAmount = 0;
     [SerializeField]
     private float _timer = 0f;
     private Animator anim;
+    private AIMovement AIMove;
 
     public float WaitTime = 5f;
 
-
-
-    public GameObject SpawnObject;
+    //private GameObject SpawnObject;
 
     // Start is called before the first frame update
     void Start()
     {
+        AIMove = GetComponent<AIMovement>();
         anim = GetComponent<Animator>();
     }
 
@@ -30,8 +34,13 @@ public class ObjectSpawner : MonoBehaviour
             _timer = 0f;
             if (_currentObjectAmount < maxObjectAmount)
             {
-                anim.Play("ThrowTrash", 0, 0.5f);
+                anim.Play("Throw", 0, 0.5f);
                 spawnTrash();
+                AIMove.SetMoveDirection(Vector3.zero);
+                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+                {
+                    AIMove.SetMoveDirection(new Vector3(Random.Range(-1, 2) * AIMove.Speed, 0, Random.Range(-1, 2) * AIMove.Speed));
+                }
             }
         }
     }
@@ -47,11 +56,11 @@ public class ObjectSpawner : MonoBehaviour
 
     private void spawnTrash()
     {
-
-        float pX = gameObject.transform.position.x + Random.Range(-2, 2);
+        GameObject SpawnObject = SpawnList[Random.Range(0, SpawnList.Count - 1)];
+        float pX = gameObject.transform.position.x;
         //float pY = SpawnObject.transform.localScale.y / 2;
         float pY = 0.08f;
-        float pZ = gameObject.transform.position.z + Random.Range(-2, 2);
+        float pZ = gameObject.transform.position.z;
 
         float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
 

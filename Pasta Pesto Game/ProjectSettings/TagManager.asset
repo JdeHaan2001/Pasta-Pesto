@@ -7,6 +7,11 @@ TagManager:
   - Floor
   - PickUp
   - Trashcan
+  - PickUp1
+  - PickUp2
+  - PickUp3
+  - PickUp4
+  - PickUp5
   layers:
   - Default
   - TransparentFX

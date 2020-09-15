@@ -19,8 +19,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            anim.Play("Punch", 0, 0.65f);
-            attack();
+            if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+            {
+                anim.Play("Punch", 0, 0.65f);
+                attack();
+            }
         }
     }
 
