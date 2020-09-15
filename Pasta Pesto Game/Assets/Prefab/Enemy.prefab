@@ -174,7 +174,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 1b1d7989293064f49a4cac8573a9c2dc, type: 3}
+  - {fileID: 2100000, guid: c6c0a7687f538ff438504190d1636c8d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1165,7 +1165,6 @@ MonoBehaviour:
   _currentObjectAmount: 0
   _timer: 0
   WaitTime: 5
-  SpawnObject: {fileID: 4824839269926431725, guid: 7cd6ffe111c305246b9ffbb022b67614, type: 3}
 --- !u!54 &4825115750728532794
 Rigidbody:
   m_ObjectHideFlags: 0
