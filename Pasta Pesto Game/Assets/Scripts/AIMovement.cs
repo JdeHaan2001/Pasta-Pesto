@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIMovement : MonoBehaviour
 {
     public float Speed = 5f;
-    public float WaitMoveAmount = 1f;
+    public float WaitMoveAmount = 2f;
     public float MovingAmount = 2f;
 
     private float WaitMoveTimer;
@@ -25,12 +25,23 @@ public class AIMovement : MonoBehaviour
         MovingTimer = MovingAmount;
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        anim.SetBool("IsWalking", true);
+        moveDirection = new Vector3(Random.Range(-1, 2) * Speed, 0, Random.Range(-1, 2) * Speed);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (_isMoving)
+        rb.rotation = Quaternion.LookRotation(moveDirection);
+        MovingTimer -= Time.deltaTime;
+        rb.velocity = moveDirection;
+        if (MovingTimer < 0f)
+        {
+            MovingTimer = WaitMoveAmount;
+            moveDirection = new Vector3(Random.Range(-1, 2) * Speed, 0, Random.Range(-1, 2) * Speed);
+        }
+        #region old AI movement
+        /*if (_isMoving)
         {
             MovingTimer -= Time.deltaTime;
             rb.velocity = moveDirection;
@@ -56,7 +67,8 @@ public class AIMovement : MonoBehaviour
                 rb.rotation = Quaternion.LookRotation(moveDirection);
                 anim.SetBool("IsWalking", true);
             }
-        }
+        }*/
+        #endregion
     }
 
     public Vector3 GetMoveDirection()
