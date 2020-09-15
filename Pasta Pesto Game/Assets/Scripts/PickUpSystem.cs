@@ -84,4 +84,14 @@ public class PickUpSystem : MonoBehaviour
     {
         return _maxPickUpAmount;
     }
+
+    public void SetCurrentCarry(int pMax)
+    {
+        _currentPickUpAmount = pMax;
+    }
+
+    public int GetCurrentCarry()
+    {
+        return _currentPickUpAmount;
+    }
 }

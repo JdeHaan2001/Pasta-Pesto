@@ -12,8 +12,10 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
-    private PickUpSystem puSystem;
+    private Transform holding;
+    private Transform holdingText;
     private PlayerMovement plMovement;
+    private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
     public GameObject player;
 
@@ -22,6 +24,7 @@ public class ShopSystem : MonoBehaviour
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
     private int carryIncrease = 2;
+    private int currentCarry;
 
 
     //-------------------- Product Image --------------------//
@@ -58,6 +61,8 @@ public class ShopSystem : MonoBehaviour
         money = transform.Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
+        holding = transform.Find("holdingItems");
+        holdingText = holding.Find("holdingText");
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
@@ -144,7 +149,7 @@ public class ShopSystem : MonoBehaviour
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
                         moneyCount -= item3Price;
-                        Debug.Log("You can now hold " + maxCarry + "!");
+                        Debug.Log("You can now hold " + maxCarry + " items!");
                         item3Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item3Price.ToString("F2"));
                     }
@@ -178,8 +183,10 @@ public class ShopSystem : MonoBehaviour
     private void Update()
     {
         GetMoney();
+        currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
+        holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
 
