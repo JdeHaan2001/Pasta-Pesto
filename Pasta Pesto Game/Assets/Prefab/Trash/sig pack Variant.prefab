@@ -78,11 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98fbd8e8ae3ce2f46b97980341114cc1, type: 3}
       propertyPath: m_Name
-      value: sig pack
+      value: sig pack Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98fbd8e8ae3ce2f46b97980341114cc1, type: 3}
       propertyPath: m_TagString
-      value: PickUp1
+      value: PickUp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98fbd8e8ae3ce2f46b97980341114cc1, type: 3}

@@ -6,12 +6,16 @@ public class Enemy : MonoBehaviour
 {
     private bool _isDead = false;
     private Rigidbody rb;
+    private AISpawner AISpwn;
+
 
     public float DespawnTimer = 2f;
+    public GameObject GameManager;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        AISpwn = GameManager.GetComponent<AISpawner>();
     }
     // Update is called once per frame
     void Update()
@@ -19,12 +23,16 @@ public class Enemy : MonoBehaviour
         if (_isDead)
         {
             rb.freezeRotation = false;
-            gameObject.transform.position += new Vector3(0, Random.Range(0.1f, 1), 0);
+            gameObject.transform.position += new Vector3(0, Random.Range(0.1f, 0.5f), 0);
             gameObject.transform.eulerAngles += new Vector3(Random.Range(-360, 360), 
                                     Random.Range(-360, 360), Random.Range(-360, 360));
             DespawnTimer -= Time.deltaTime;
             if (DespawnTimer <= 0f)
+            {
                 Destroy(gameObject);
+                AISpwn.SetEnemyTotal();
+                AISpwn.RemoveEnemyFromList(this.gameObject);
+            }
         }
     }
 
