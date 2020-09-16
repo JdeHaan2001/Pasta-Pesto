@@ -10,10 +10,10 @@ public class LevelSystem : MonoBehaviour
     private bool dayHasEnded;
     private bool hasCompletedLevel;
 
-    private const float DAY_IN_SECONDS = 360f;
+    private float COUNTDOWN_TIMER = 180f; // The length of the level => 1f = 1 second.
+    private float DAY_IN_SECONDS;
     private float day;
     private int currentLevel = 1;
-    private float COUNTDOWN_TIMER = 180f;
     // Level scores - ADJUST WHERE NEEDED
     private int level1Goal = 30;
     private int level2Goal = 50;
@@ -34,6 +34,7 @@ public class LevelSystem : MonoBehaviour
 
     private void Awake()
     {
+        DAY_IN_SECONDS = (COUNTDOWN_TIMER * 2);
         day += 0.375f;
 
         shopScript = UI.GetComponent<ShopSystem>();

@@ -12,14 +12,14 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
-    private Transform holding;
     private Transform holdingText;
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
     public GameObject player;
+    public GameObject containerForVisibility;
 
-
+    private bool levelIsStarting;
     private float shopItemHeight = 50f;
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
@@ -52,26 +52,26 @@ public class ShopSystem : MonoBehaviour
 
     void Awake()
     {
+        levelIsStarting = true;
+
+
         // Assign the corresponding gameObject to the Transform variables.
-        money = transform.Find("money");
+        money = transform.Find("shopIcon").Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-        holding = transform.Find("holdingItems");
-        holdingText = holding.Find("holdingText");
+        holdingText = transform.Find("holdingText");
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
 
         // Start game with 0 "money"
         moneyCount = 0;
-    }
 
-    private void Start()
-    {
+
         // Add an item to the list of shopitems -> Image, Name, Cost, Position
         //-----------------------------------------------------------------------------------------
         // Simply add a new item by adding in a new line below, use the following template
-        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, [item name].ToString(), [next number]);
+        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, [item name]  .ToString(), [next number]);
         // Make sure to also add the image above at (//-------------------- Product Image --------------------//)
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
@@ -174,6 +174,11 @@ public class ShopSystem : MonoBehaviour
 
     private void Update()
     {
+        if (levelIsStarting)
+        {
+            containerForVisibility.SetActive(false);
+            levelIsStarting = false;
+        }
         GetMoney();
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
