@@ -22,7 +22,10 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = moveVec * speed;
         rb.rotation = Quaternion.LookRotation(moveVec);
         if (rb.velocity != Vector3.zero)
+        {
             anim.SetBool("IsWalking", true);
+            FindObjectOfType<AudioManager>().Play("Walk");
+        }
         else
             anim.SetBool("IsWalking", false);
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class LevelSystem : MonoBehaviour
 {
@@ -9,10 +10,10 @@ public class LevelSystem : MonoBehaviour
     private bool dayHasEnded;
     private bool hasCompletedLevel;
 
-    private const float DAY_IN_SECONDS = 150f;
+    private const float DAY_IN_SECONDS = 360f;
     private float day;
-    private float rotateSpeed = 30f;
     private int currentLevel = 1;
+    private float COUNTDOWN_TIMER = 180f;
     // Level scores - ADJUST WHERE NEEDED
     private int level1Goal = 30;
     private int level2Goal = 50;
@@ -21,7 +22,6 @@ public class LevelSystem : MonoBehaviour
     private int level5Goal = 500;
 
     private int currentGoal;
-
     private float currentScore;
 
     public GameObject DayNightCycle;
@@ -30,6 +30,7 @@ public class LevelSystem : MonoBehaviour
     private ShopSystem shopScript;
     private Transform hourHand;
     private Transform minuteHand;
+    private TextMeshProUGUI clockTime;
 
     private void Awake()
     {
@@ -40,6 +41,7 @@ public class LevelSystem : MonoBehaviour
 
         hourHand = Clock.transform.Find("hourHand");
         minuteHand = Clock.transform.Find("minuteHand");
+        clockTime = Clock.transform.Find("clockTime").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -50,6 +52,7 @@ public class LevelSystem : MonoBehaviour
         setCurrentGoalAndLevel();
 
         UpdateClock();
+        clockTime.SetText(COUNTDOWN_TIMER.ToString("0"));
     }
 
     private void setCurrentGoalAndLevel()
@@ -149,6 +152,8 @@ public class LevelSystem : MonoBehaviour
 
     private void UpdateClock()
     {
+        COUNTDOWN_TIMER -= Time.deltaTime;
+
         day += Time.deltaTime / DAY_IN_SECONDS;
         float dayNormalized = day % 1f;
         float dayHours = 24f;
@@ -178,5 +183,15 @@ public class LevelSystem : MonoBehaviour
     public float GetDayTime()
     {
         return day;
+    }
+
+    public void SetClockTime(float pTime)
+    {
+        COUNTDOWN_TIMER = pTime;
+    }
+
+    public float GetClockTime()
+    {
+        return COUNTDOWN_TIMER;
     }
 }

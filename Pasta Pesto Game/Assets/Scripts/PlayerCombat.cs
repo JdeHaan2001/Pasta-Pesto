@@ -33,6 +33,7 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider enemy in hitEnemies)
         {
+            FindObjectOfType<AudioManager>().Play("Slap");
             enemy.GetComponent<Enemy>().SetIsDead();
             Debug.Log("We hit " + enemy.name);
         }
