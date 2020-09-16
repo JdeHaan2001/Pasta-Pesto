@@ -206,6 +206,11 @@ public class ShopSystem : MonoBehaviour
         totalEarned += pMoney;
     }
 
+    public float GetTotalEarned()
+    {
+        return totalEarned;
+    }
+
     // A simple getter-function to get PlayerMoney.
     public float GetMoney()
     {

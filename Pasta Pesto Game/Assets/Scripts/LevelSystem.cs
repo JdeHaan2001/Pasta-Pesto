@@ -46,7 +46,8 @@ public class LevelSystem : MonoBehaviour
 
     private void Update()
     {
-        currentScore = shopScript.GetMoney();
+        //currentScore = shopScript.GetMoney();
+        currentScore = shopScript.GetTotalEarned();
         CheckScoreGoal();
         checkEndDay();
         setCurrentGoalAndLevel();
