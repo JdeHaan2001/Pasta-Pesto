@@ -107,12 +107,13 @@ public class ShopSystem : MonoBehaviour
             /// If you change the indexNumbers, make sure to change them here too.
             /// To add a new product, simply extend the code with another case (copy+paste an existing one) and change the names.
             /// </summary>
-
+            
             switch (positionIndex) 
             {
                 case 1:
                     if (moneyCount >= item1Price)
                     {
+                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pDay = lvlSystem.GetDayTime();
                         pDay -= timeDecrease;
                         lvlSystem.SetDayTime(pDay);
@@ -121,10 +122,13 @@ public class ShopSystem : MonoBehaviour
                         item1Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item1Price.ToString("F2"));
                     }
+                    else
+                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 2:
                     if (moneyCount >= item2Price)
                     {
+                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pSpeed = plMovement.GetPlayerSpeed();
                         pSpeed += speedIncrease;
                         plMovement.SetPlayerSpeed(pSpeed);
@@ -133,10 +137,13 @@ public class ShopSystem : MonoBehaviour
                         item2Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item2Price.ToString("F2"));
                     }
+                    else
+                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 3:
                     if (moneyCount >= item3Price)
                     {
+                        FindObjectOfType<AudioManager>().Play("BuySound");
                         int maxCarry = puSystem.GetMaxCarry();
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
@@ -145,16 +152,22 @@ public class ShopSystem : MonoBehaviour
                         item3Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item3Price.ToString("F2"));
                     }
+                    else
+                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 4:
                     if (moneyCount >= item4Price)
                     {
+                        FindObjectOfType<AudioManager>().Play("BuySound");
                         Debug.Log("This item still needs to be implemented!");
                     }
+                    else
+                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 5:
                     if (moneyCount >= item5Price)
                     {
+                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pValue = puSystem.GetPlasticWorth();
                         pValue += valueIncrease;
                         puSystem.SetPlasticWorth(pValue);
@@ -163,6 +176,8 @@ public class ShopSystem : MonoBehaviour
                         item5Price *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item5Price.ToString("F2"));
                     }
+                    else
+                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
             }
         };
