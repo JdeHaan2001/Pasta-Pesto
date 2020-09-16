@@ -174,7 +174,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 1b1d7989293064f49a4cac8573a9c2dc, type: 3}
+  - {fileID: 2100000, guid: 54dbae21fdc26fb428f5e78b26da6e54, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1128,6 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnTimer: 2
+  GameManager: {fileID: 0}
 --- !u!114 &4825115750728532792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,7 +1166,6 @@ MonoBehaviour:
   _currentObjectAmount: 0
   _timer: 0
   WaitTime: 5
-  SpawnObject: {fileID: 4824839269926431725, guid: 7cd6ffe111c305246b9ffbb022b67614, type: 3}
 --- !u!54 &4825115750728532794
 Rigidbody:
   m_ObjectHideFlags: 0
