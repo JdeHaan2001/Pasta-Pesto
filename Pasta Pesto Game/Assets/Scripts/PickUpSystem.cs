@@ -35,7 +35,9 @@ public class PickUpSystem : MonoBehaviour
     {
         if (other.tag == "Trashcan" && Input.GetKeyDown(KeyCode.E))
         {
-            shopSystem.SetMoneyAmount(plasticValue * _currentPickUpAmount);
+            float amountEarned = plasticValue * _currentPickUpAmount;
+            shopSystem.SetMoneyAmount(amountEarned);
+            shopSystem.SetTotalEarned(amountEarned);
             _currentPickUpAmount = 0;
         }
     }

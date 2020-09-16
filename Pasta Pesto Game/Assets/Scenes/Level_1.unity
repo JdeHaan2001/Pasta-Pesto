@@ -2024,6 +2024,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d5dc0e5fc1e456742a822faa3f6fd4d7, type: 2}
+    - target: {fileID: 3667212184365400644, guid: b7bd847eb7440c04981f738d3e53e6e6, type: 3}
+      propertyPath: m_Size.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667212184365400644, guid: b7bd847eb7440c04981f738d3e53e6e6, type: 3}
+      propertyPath: m_Size.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3667212184365400645, guid: b7bd847eb7440c04981f738d3e53e6e6, type: 3}
       propertyPath: m_Name
       value: Trashcan
@@ -3631,6 +3639,14 @@ PrefabInstance:
     - target: {fileID: 2363737020333079571, guid: 26cfad4030a0c454792b447afe08967e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363737020769160744, guid: 26cfad4030a0c454792b447afe08967e, type: 3}
+      propertyPath: OffSetVec.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363737020769160744, guid: 26cfad4030a0c454792b447afe08967e, type: 3}
+      propertyPath: OffSetVec.z
+      value: -9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26cfad4030a0c454792b447afe08967e, type: 3}
