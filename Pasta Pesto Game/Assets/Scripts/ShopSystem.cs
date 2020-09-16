@@ -24,6 +24,7 @@ public class ShopSystem : MonoBehaviour
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
+    private float clockIncrease = 45f;
     private int carryIncrease = 2;
     private int currentCarry;
 
@@ -43,11 +44,11 @@ public class ShopSystem : MonoBehaviour
     private string item5Name = "Plastic Monopoly";
 
     //-------------------- Shop price --------------------//
-    private float item1Price = 30f;
-    private float item2Price = 10f;
-    private float item3Price = 25f;
-    private float item4Price = 100f;
-    private float item5Price = 15f;
+    private float timePrice = 30f;
+    private float speedPrice = 10f;
+    private float carryPrice = 25f;
+    private float advertPrice = 100f;
+    private float valuePrice = 15f;
 
     void Awake()
     {
@@ -70,16 +71,16 @@ public class ShopSystem : MonoBehaviour
         // Add an item to the list of shopitems -> Image, Name, Cost, Position
         //-----------------------------------------------------------------------------------------
         // Simply add a new item by adding in a new line below, use the following template
-        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, item[X]Price.ToString(), [next number]);
+        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, [item name].ToString(), [next number]);
         // Make sure to also add the image above at (//-------------------- Product Image --------------------//)
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
         //-----------------------------------------------------------------------------------------
-        createItemSlot(item1Image, item1Name, item1Price.ToString(), 1);
-        createItemSlot(item2Image, item2Name, item2Price.ToString(), 2);
-        createItemSlot(item3Image, item3Name, item3Price.ToString(), 3);
-        createItemSlot(item4Image, item4Name, item4Price.ToString(), 4);
-        createItemSlot(item5Image, item5Name, item5Price.ToString(), 5);
+        createItemSlot(item1Image, item1Name, timePrice.ToString(), 1);
+        createItemSlot(item2Image, item2Name, speedPrice.ToString(), 2);
+        createItemSlot(item3Image, item3Name, carryPrice.ToString(), 3);
+        createItemSlot(item4Image, item4Name, advertPrice.ToString(), 4);
+        createItemSlot(item5Image, item5Name, valuePrice.ToString(), 5);
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
@@ -111,57 +112,60 @@ public class ShopSystem : MonoBehaviour
             switch (positionIndex) 
             {
                 case 1:
-                    if (moneyCount >= item1Price)
+                    if (moneyCount >= timePrice)
                     {
                         float pDay = lvlSystem.GetDayTime();
                         pDay -= timeDecrease;
                         lvlSystem.SetDayTime(pDay);
-                        moneyCount -= item1Price;
+                        moneyCount -= timePrice;
+                        float pTime = lvlSystem.GetClockTime();
+                        pTime += clockIncrease;
+                        lvlSystem.SetClockTime(pTime);
                         Debug.Log("Set the clock back 3 hours!");
-                        item1Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item1Price.ToString("F2"));
+                        timePrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(timePrice.ToString("F2"));
                     }
                     break;
                 case 2:
-                    if (moneyCount >= item2Price)
+                    if (moneyCount >= speedPrice)
                     {
                         float pSpeed = plMovement.GetPlayerSpeed();
                         pSpeed += speedIncrease;
                         plMovement.SetPlayerSpeed(pSpeed);
-                        moneyCount -= item2Price;
+                        moneyCount -= speedPrice;
                         Debug.Log("Increased the movementspeed to " + pSpeed + "!");
-                        item2Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item2Price.ToString("F2"));
+                        speedPrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(speedPrice.ToString("F2"));
                     }
                     break;
                 case 3:
-                    if (moneyCount >= item3Price)
+                    if (moneyCount >= carryPrice)
                     {
                         int maxCarry = puSystem.GetMaxCarry();
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
-                        moneyCount -= item3Price;
+                        moneyCount -= carryPrice;
                         Debug.Log("You can now hold " + maxCarry + " items!");
-                        item3Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item3Price.ToString("F2"));
+                        carryPrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
                     break;
                 case 4:
-                    if (moneyCount >= item4Price)
+                    if (moneyCount >= advertPrice)
                     {
                         Debug.Log("This item still needs to be implemented!");
                     }
                     break;
                 case 5:
-                    if (moneyCount >= item5Price)
+                    if (moneyCount >= valuePrice)
                     {
                         float pValue = puSystem.GetPlasticWorth();
                         pValue += valueIncrease;
                         puSystem.SetPlasticWorth(pValue);
-                        moneyCount -= item5Price;
+                        moneyCount -= valuePrice;
                         Debug.Log("Plastic has become more valuable! Each plastic is now worth " + pValue + "!");
-                        item5Price *= multiplier;
-                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(item5Price.ToString("F2"));
+                        valuePrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(valuePrice.ToString("F2"));
                     }
                     break;
             }

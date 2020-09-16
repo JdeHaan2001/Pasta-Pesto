@@ -1128,7 +1128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DespawnTimer: 2
-  GameManager: {fileID: 0}
+  GameManager: {fileID: 7564257859908295930, guid: ff08bcc182a5ad04f8ed18ac8c48f938, type: 3}
 --- !u!114 &4825115750728532792
 MonoBehaviour:
   m_ObjectHideFlags: 0
