@@ -12,20 +12,18 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
-    private Transform totalMoneyEarned;
-    private Transform holding;
     private Transform holdingText;
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
     public GameObject player;
+    public GameObject containerForVisibility;
 
-
+    private bool levelIsStarting;
     private float shopItemHeight = 50f;
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
-    private float totalEarned;
     private float clockIncrease = 45f;
     private int carryIncrease = 2;
     private int currentCarry;
@@ -54,27 +52,26 @@ public class ShopSystem : MonoBehaviour
 
     void Awake()
     {
+        levelIsStarting = true;
+
+
         // Assign the corresponding gameObject to the Transform variables.
-        money = transform.Find("money");
-        totalMoneyEarned = transform.Find("totalEarned");
+        money = transform.Find("shopIcon").Find("money");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-        holding = transform.Find("holdingItems");
-        holdingText = holding.Find("holdingText");
+        holdingText = transform.Find("holdingText");
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
 
         // Start game with 0 "money"
         moneyCount = 0;
-    }
 
-    private void Start()
-    {
+
         // Add an item to the list of shopitems -> Image, Name, Cost, Position
         //-----------------------------------------------------------------------------------------
         // Simply add a new item by adding in a new line below, use the following template
-        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, [item name].ToString(), [next number]);
+        // TEMPLATE: createItemSlot(item[X]Image, item[X]Name, [item name]  .ToString(), [next number]);
         // Make sure to also add the image above at (//-------------------- Product Image --------------------//)
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
@@ -111,13 +108,12 @@ public class ShopSystem : MonoBehaviour
             /// If you change the indexNumbers, make sure to change them here too.
             /// To add a new product, simply extend the code with another case (copy+paste an existing one) and change the names.
             /// </summary>
-            
+
             switch (positionIndex) 
             {
                 case 1:
                     if (moneyCount >= timePrice)
                     {
-                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pDay = lvlSystem.GetDayTime();
                         pDay -= timeDecrease;
                         lvlSystem.SetDayTime(pDay);
@@ -129,13 +125,10 @@ public class ShopSystem : MonoBehaviour
                         timePrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(timePrice.ToString("F2"));
                     }
-                    else
-                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 2:
                     if (moneyCount >= speedPrice)
                     {
-                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pSpeed = plMovement.GetPlayerSpeed();
                         pSpeed += speedIncrease;
                         plMovement.SetPlayerSpeed(pSpeed);
@@ -144,13 +137,10 @@ public class ShopSystem : MonoBehaviour
                         speedPrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(speedPrice.ToString("F2"));
                     }
-                    else
-                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 3:
                     if (moneyCount >= carryPrice)
                     {
-                        FindObjectOfType<AudioManager>().Play("BuySound");
                         int maxCarry = puSystem.GetMaxCarry();
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
@@ -159,22 +149,16 @@ public class ShopSystem : MonoBehaviour
                         carryPrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
-                    else
-                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 4:
                     if (moneyCount >= advertPrice)
                     {
-                        FindObjectOfType<AudioManager>().Play("BuySound");
                         Debug.Log("This item still needs to be implemented!");
                     }
-                    else
-                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
                 case 5:
                     if (moneyCount >= valuePrice)
                     {
-                        FindObjectOfType<AudioManager>().Play("BuySound");
                         float pValue = puSystem.GetPlasticWorth();
                         pValue += valueIncrease;
                         puSystem.SetPlasticWorth(pValue);
@@ -183,20 +167,22 @@ public class ShopSystem : MonoBehaviour
                         valuePrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(valuePrice.ToString("F2"));
                     }
-                    else
-                        FindObjectOfType<AudioManager>().Play("NoMoney");
                     break;
             }
         };
     }
-    
+
     private void Update()
     {
+        if (levelIsStarting)
+        {
+            containerForVisibility.SetActive(false);
+            levelIsStarting = false;
+        }
         GetMoney();
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total influence: " + totalEarned.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
