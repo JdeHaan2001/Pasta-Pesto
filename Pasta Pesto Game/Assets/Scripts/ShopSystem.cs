@@ -12,6 +12,7 @@ public class ShopSystem : MonoBehaviour
     private Transform shopItemTemplate;
     private Transform container;
     private Transform money;
+    private Transform totalMoneyEarned;
     private Transform holdingText;
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
@@ -24,6 +25,7 @@ public class ShopSystem : MonoBehaviour
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
+    private float totalEarned = 0f;
     private float clockIncrease = 45f;
     private int carryIncrease = 2;
     private int currentCarry;
@@ -57,6 +59,7 @@ public class ShopSystem : MonoBehaviour
 
         // Assign the corresponding gameObject to the Transform variables.
         money = transform.Find("shopIcon").Find("money");
+        totalMoneyEarned = transform.Find("shopIcon").Find("totalEarned");
         container = transform.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = transform.Find("holdingText");
@@ -183,6 +186,7 @@ public class ShopSystem : MonoBehaviour
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + moneyCount.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
