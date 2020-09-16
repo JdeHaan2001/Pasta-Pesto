@@ -35,13 +35,17 @@ public class PickUpSystem : MonoBehaviour
     {
         if (other.tag == "Trashcan" && Input.GetKeyDown(KeyCode.E))
         {
-            shopSystem.SetMoneyAmount(plasticValue * _currentPickUpAmount);
+            float amountEarned = plasticValue * _currentPickUpAmount;
+            shopSystem.SetMoneyAmount(amountEarned);
+            shopSystem.SetTotalEarned(amountEarned);
+            FindObjectOfType<AudioManager>().Play("ThrowTrash");
             _currentPickUpAmount = 0;
         }
     }
 
     private void handlePickUpTags(Collider other)
     {
+        FindObjectOfType<AudioManager>().Play("PickUp");
         if (other.tag == "PickUp")
         {
             pickUp(plasticValue, other.gameObject);
