@@ -41,11 +41,11 @@ public class ShopSystem : MonoBehaviour
     public Sprite item5Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "It's rewind time";
-    private string item2Name = "Gotta go fast";
-    private string item3Name = "Increased Pockets";
+    private string item1Name = "Extra time";
+    private string item2Name = "Move faster";
+    private string item3Name = "Carry more plastic";
     private string item4Name = "Advertisements";
-    private string item5Name = "Plastic Monopoly";
+    private string item5Name = "Increase plastic worth";
 
     //-------------------- Shop price --------------------//
     private float timePrice = 30f;
