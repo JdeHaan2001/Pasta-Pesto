@@ -62,8 +62,8 @@ public class ShopSystem : MonoBehaviour
         // Assign the corresponding gameObject to the Transform variables.
         panel = transform.Find("Panel");
         shopIcon = panel.Find("shopIcon");
-        money = shopIcon.Find("money");
-        totalMoneyEarned = shopIcon.Find("totalEarned");
+        money = panel.Find("money");
+        totalMoneyEarned = panel.Find("totalEarned");
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
