@@ -27,7 +27,10 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Walk");
         }
         else
+        {
             anim.SetBool("IsWalking", false);
+            FindObjectOfType<AudioManager>().Stop("Walk");
+        }
     }
 
     public void SetPlayerSpeed(float pSpeed)

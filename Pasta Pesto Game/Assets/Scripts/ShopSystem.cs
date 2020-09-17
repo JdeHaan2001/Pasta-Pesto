@@ -41,11 +41,11 @@ public class ShopSystem : MonoBehaviour
     public Sprite item5Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "Extra time";
-    private string item2Name = "Move faster";
-    private string item3Name = "Carry more plastic";
+    private string item1Name = "It's rewind time";
+    private string item2Name = "Gotta go fast";
+    private string item3Name = "Increased Pockets";
     private string item4Name = "Advertisements";
-    private string item5Name = "Increase plastic worth";
+    private string item5Name = "Plastic Monopoly";
 
     //-------------------- Shop price --------------------//
     private float timePrice = 30f;
@@ -62,8 +62,8 @@ public class ShopSystem : MonoBehaviour
         // Assign the corresponding gameObject to the Transform variables.
         panel = transform.Find("Panel");
         shopIcon = panel.Find("shopIcon");
-        money = panel.Find("money");
-        totalMoneyEarned = panel.Find("totalEarned");
+        money = shopIcon.Find("money");
+        totalMoneyEarned = shopIcon.Find("totalEarned");
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
@@ -83,11 +83,11 @@ public class ShopSystem : MonoBehaviour
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
         //-----------------------------------------------------------------------------------------
-        createItemSlot(item1Image, item1Name, timePrice.ToString(), 1);
-        createItemSlot(item2Image, item2Name, speedPrice.ToString(), 2);
-        createItemSlot(item3Image, item3Name, carryPrice.ToString(), 3);
+        createItemSlot(item1Image, item1Name, timePrice.ToString(),   1);
+        createItemSlot(item2Image, item2Name, speedPrice.ToString(),  2);
+        createItemSlot(item3Image, item3Name, carryPrice.ToString(),  3);
         createItemSlot(item4Image, item4Name, advertPrice.ToString(), 4);
-        createItemSlot(item5Image, item5Name, valuePrice.ToString(), 5);
+        createItemSlot(item5Image, item5Name, valuePrice.ToString(),  5);
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
@@ -190,7 +190,7 @@ public class ShopSystem : MonoBehaviour
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + moneyCount.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
