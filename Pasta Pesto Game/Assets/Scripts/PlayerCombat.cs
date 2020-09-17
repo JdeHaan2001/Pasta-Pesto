@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform AttackPoint;
     public float AttackRange = 0.5f;
     public LayerMask EnemyLayers;
+    public GameObject player;
 
     private Animator anim;
 
@@ -17,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Punch"))

@@ -27,7 +27,10 @@ public class LevelSystem : MonoBehaviour
     public GameObject DayNightCycle;
     public GameObject UI;
     public GameObject Clock;
+    public GameObject player;
     private ShopSystem shopScript;
+    public Transform Panel;
+    private Transform LevelCounter;
     private Transform hourHand;
     private Transform minuteHand;
     private TextMeshProUGUI clockTime;
@@ -39,10 +42,11 @@ public class LevelSystem : MonoBehaviour
 
         shopScript = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
-
+        Panel = UI.transform.Find("Panel");
         hourHand = Clock.transform.Find("hourHand");
         minuteHand = Clock.transform.Find("minuteHand");
         clockTime = Clock.transform.Find("clockTime").GetComponent<TextMeshProUGUI>();
+        LevelCounter = Panel.Find("currentLevel");
     }
 
     private void Update()
@@ -59,6 +63,7 @@ public class LevelSystem : MonoBehaviour
 
     private void setCurrentGoalAndLevel()
     {
+        LevelCounter.GetComponent<TextMeshProUGUI>().SetText("Level " + currentLevel.ToString());
         switch (currentLevel)
         {
             case 1:
@@ -130,6 +135,7 @@ public class LevelSystem : MonoBehaviour
                     resetSettings();
                 }
                 break;
+                
         };
     }
 

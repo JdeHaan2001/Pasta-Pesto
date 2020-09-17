@@ -51,7 +51,7 @@ public class ShopSystem : MonoBehaviour
     private float timePrice = 30f;
     private float speedPrice = 10f;
     private float carryPrice = 25f;
-    private float advertPrice = 100f;
+    private float advertPrice = 15f;
     private float valuePrice = 15f;
 
     void Awake()
