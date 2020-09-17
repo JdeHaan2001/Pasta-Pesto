@@ -62,21 +62,21 @@ public class ObjectSpawner : MonoBehaviour
         float pY = 0.08f;
         float pZ = gameObject.transform.position.z;
 
-        float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
+        //float distance = Vector3.Distance(SpawnObject.transform.position, gameObject.transform.position);
 
-        if (distance < pY)
-        {
-            if (distance > 0)
-            {
-                pX += pY;
-                pZ += pY;
-            }
-            else
-            {
-                pX -= pY;
-                pZ -= pY;
-            }
-        }
+        //if (distance < pY)
+        //{
+        //    if (distance > 0)
+        //    {
+        //        pX += pY;
+        //        pZ += pY;
+        //    }
+        //    else
+        //    {
+        //        pX -= pY;
+        //        pZ -= pY;
+        //    }
+        //}
 
         Instantiate(SpawnObject, new Vector3(pX, pY, pZ), Quaternion.identity);
         SpawnObject.tag = "PickUp";

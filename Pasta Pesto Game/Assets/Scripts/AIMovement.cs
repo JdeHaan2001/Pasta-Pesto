@@ -40,6 +40,10 @@ public class AIMovement : MonoBehaviour
             MovingTimer = WaitMoveAmount;
             moveDirection = new Vector3(Random.Range(-1, 2) * Speed, 0, Random.Range(-1, 2) * Speed);
         }
+        if (moveDirection != Vector3.zero)
+            anim.SetBool("IsWalking", true);
+        else
+            anim.SetBool("IsWalking", false);
         #region old AI movement
         /*if (_isMoving)
         {
