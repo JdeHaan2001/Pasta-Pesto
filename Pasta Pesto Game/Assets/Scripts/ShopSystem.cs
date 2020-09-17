@@ -14,6 +14,8 @@ public class ShopSystem : MonoBehaviour
     private Transform money;
     private Transform totalMoneyEarned;
     private Transform holdingText;
+    private Transform panel;
+    private Transform shopIcon;
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
@@ -58,11 +60,13 @@ public class ShopSystem : MonoBehaviour
 
 
         // Assign the corresponding gameObject to the Transform variables.
-        money = transform.Find("shopIcon").Find("money");
-        totalMoneyEarned = transform.Find("shopIcon").Find("totalEarned");
-        container = transform.Find("container");
+        panel = transform.Find("Panel");
+        shopIcon = panel.Find("shopIcon");
+        money = shopIcon.Find("money");
+        totalMoneyEarned = shopIcon.Find("totalEarned");
+        container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
-        holdingText = transform.Find("holdingText");
+        holdingText = panel.Find("holdingText");
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
