@@ -5,6 +5,7 @@ using UnityEngine;
 public class AISpawner : MonoBehaviour
 {
     private List<GameObject> enemyList = new List<GameObject>();
+    private List<GameObject> goodGuyList = new List<GameObject>();
     [SerializeField]
     private float waitAmount;
     [SerializeField]
@@ -13,6 +14,7 @@ public class AISpawner : MonoBehaviour
     private int enemyTotal = 0;
 
     public GameObject EnemyObj;
+    public GameObject GoodGuyObj;
 
     public int MinEnemyAmount = 3;
     public int MaxEnemyAmount = 5;
@@ -46,6 +48,7 @@ public class AISpawner : MonoBehaviour
         {
             spawnEnemy();
         }
+        
 
     }
 
@@ -53,6 +56,11 @@ public class AISpawner : MonoBehaviour
     {
         enemyList.Add(Instantiate(EnemyObj, new Vector3(Random.Range(MapBoundXMin, MapBoundXMax), 0, Random.Range(MapBoundZMin, MapBoundZMax)), Quaternion.identity));
         enemyTotal++;
+    }
+
+    public void spawnGoodGuy()
+    {
+        goodGuyList.Add(Instantiate(GoodGuyObj, new Vector3(Random.Range(MapBoundXMin, MapBoundXMax), 0, Random.Range(MapBoundZMin, MapBoundZMax)), Quaternion.identity));
     }
 
     public void RemoveEnemyFromList(GameObject pEnemy)

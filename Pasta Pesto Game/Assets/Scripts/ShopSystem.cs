@@ -17,7 +17,10 @@ public class ShopSystem : MonoBehaviour
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
+    private AISpawner _AISpawner;
+
     public GameObject player;
+    public GameObject gameManager;
 
 
     private float shopItemHeight = 50f;
@@ -163,7 +166,9 @@ public class ShopSystem : MonoBehaviour
                     if (moneyCount >= advertPrice)
                     {
                         FindObjectOfType<AudioManager>().Play("BuySound");
-                        Debug.Log("This item still needs to be implemented!");
+                        moneyCount -= advertPrice;
+                        advertPrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
                     else
                         FindObjectOfType<AudioManager>().Play("NoMoney");
@@ -194,6 +199,11 @@ public class ShopSystem : MonoBehaviour
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            moneyCount += 1000f;
+        }
     }
 
 
