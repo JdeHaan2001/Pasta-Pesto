@@ -83,11 +83,11 @@ public class ShopSystem : MonoBehaviour
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
         //-----------------------------------------------------------------------------------------
-        createItemSlot(item1Image, item1Name, timePrice.ToString(), 1);
-        createItemSlot(item2Image, item2Name, speedPrice.ToString(), 2);
-        createItemSlot(item3Image, item3Name, carryPrice.ToString(), 3);
+        createItemSlot(item1Image, item1Name, timePrice.ToString(),   1);
+        createItemSlot(item2Image, item2Name, speedPrice.ToString(),  2);
+        createItemSlot(item3Image, item3Name, carryPrice.ToString(),  3);
         createItemSlot(item4Image, item4Name, advertPrice.ToString(), 4);
-        createItemSlot(item5Image, item5Name, valuePrice.ToString(), 5);
+        createItemSlot(item5Image, item5Name, valuePrice.ToString(),  5);
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
