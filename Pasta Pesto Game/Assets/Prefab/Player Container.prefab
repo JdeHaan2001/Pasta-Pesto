@@ -271,7 +271,7 @@ MonoBehaviour:
   Target: {fileID: 2363737019569936352}
   SmoothSpeed: 5
   RotationVec: {x: 35, y: 0, z: 0}
-  OffSetVec: {x: 0, y: 8, z: -8}
+  OffSetVec: {x: 0, y: 8, z: -10}
 --- !u!1 &7509058104362220860
 GameObject:
   m_ObjectHideFlags: 0
