@@ -121,6 +121,9 @@ MonoBehaviour:
   EnemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  GoodGuyLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!95 &4953712158590811097
 Animator:
   serializedVersion: 3
