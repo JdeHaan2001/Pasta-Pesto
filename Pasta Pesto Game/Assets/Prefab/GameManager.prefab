@@ -47,6 +47,7 @@ MonoBehaviour:
   timer: 0
   enemyTotal: 0
   EnemyObj: {fileID: 4825115750728532791, guid: db23ab0769a77374195ed38bc8f1ce31, type: 3}
+  GoodGuyObj: {fileID: 1025944377420364820, guid: 7f71e04ab9ca0604da98f07d5fcbef2f, type: 3}
   MinEnemyAmount: 3
   MaxEnemyAmount: 5
   MapBoundXMin: -13.2
