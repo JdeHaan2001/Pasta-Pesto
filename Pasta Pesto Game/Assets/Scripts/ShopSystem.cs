@@ -41,11 +41,11 @@ public class ShopSystem : MonoBehaviour
     public Sprite item5Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "It's rewind time";
-    private string item2Name = "Gotta go fast";
-    private string item3Name = "Increased Pockets";
+    private string item1Name = "Extra time";
+    private string item2Name = "Move faster";
+    private string item3Name = "Carry more plastic";
     private string item4Name = "Advertisements";
-    private string item5Name = "Plastic Monopoly";
+    private string item5Name = "Increase plastic worth";
 
     //-------------------- Shop price --------------------//
     private float timePrice = 30f;
@@ -62,8 +62,8 @@ public class ShopSystem : MonoBehaviour
         // Assign the corresponding gameObject to the Transform variables.
         panel = transform.Find("Panel");
         shopIcon = panel.Find("shopIcon");
-        money = shopIcon.Find("money");
-        totalMoneyEarned = shopIcon.Find("totalEarned");
+        money = panel.Find("money");
+        totalMoneyEarned = panel.Find("totalEarned");
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
@@ -190,7 +190,7 @@ public class ShopSystem : MonoBehaviour
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + moneyCount.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
