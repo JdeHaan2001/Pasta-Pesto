@@ -44,7 +44,6 @@ public class PlayerCombat : MonoBehaviour
             shopSystem.SetMoneyAmount(6f);
             FindObjectOfType<AudioManager>().Play("Slap");
             enemy.GetComponent<Enemy>().SetIsDead();
-            Debug.Log("We hit " + enemy.name);
         }
         foreach (Collider GoodGuy in hitGoodGuy)
         {

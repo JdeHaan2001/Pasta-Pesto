@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3670102294567593008}
   - component: {fileID: 8230262805972952032}
   - component: {fileID: 5376914060943499806}
-  - component: {fileID: 7415996140629271823}
   m_Layer: 0
   m_Name: E
   m_TagString: Untagged
@@ -170,19 +169,6 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!114 &7415996140629271823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247280472504001246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0efbd5f08509440a3109d6cc7d876c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2363737019569936359}
 --- !u!1 &2363737019569936359
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +185,7 @@ GameObject:
   - component: {fileID: 2363737019569936285}
   - component: {fileID: 7509058105220154633}
   - component: {fileID: 4953712158590811097}
+  - component: {fileID: 4888305342798275815}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -327,6 +314,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4888305342798275815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363737019569936359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0efbd5f08509440a3109d6cc7d876c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpacebarText: {fileID: 3393982732862657154}
+  EText: {fileID: 247280472504001246}
 --- !u!1 &2363737020333079568
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,7 +373,6 @@ GameObject:
   - component: {fileID: 2410867199676131756}
   - component: {fileID: 4351805517571342211}
   - component: {fileID: 4568828332175583264}
-  - component: {fileID: 5381105072508680444}
   m_Layer: 0
   m_Name: SpaceBar
   m_TagString: Untagged
@@ -531,19 +531,6 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!114 &5381105072508680444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3393982732862657154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0efbd5f08509440a3109d6cc7d876c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 2363737019569936359}
 --- !u!1 &7509058104362220860
 GameObject:
   m_ObjectHideFlags: 0
