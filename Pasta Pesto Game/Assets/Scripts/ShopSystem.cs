@@ -20,8 +20,11 @@ public class ShopSystem : MonoBehaviour
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
+    private AISpawner spawnAI;
+
     public GameObject player;
     public GameObject containerForVisibility;
+    public GameObject gameManager;
 
     private bool levelIsStarting;
     private float shopItemHeight = 40f;
@@ -71,6 +74,7 @@ public class ShopSystem : MonoBehaviour
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
+        spawnAI = gameManager.GetComponent<AISpawner>();
 
         // Start game with 0 "money"
         moneyCount = 0;
@@ -158,7 +162,10 @@ public class ShopSystem : MonoBehaviour
                 case 4:
                     if (moneyCount >= advertPrice)
                     {
-                        Debug.Log("This item still needs to be implemented!");
+                        spawnAI.spawnGoodGuy();
+                        moneyCount -= advertPrice;
+                        advertPrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
                     break;
                 case 5:
@@ -189,6 +196,8 @@ public class ShopSystem : MonoBehaviour
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
         totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
+        if (Input.GetKey(KeyCode.C))
+            moneyCount += 1000f;
     }
 
 
