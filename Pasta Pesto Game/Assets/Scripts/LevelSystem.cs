@@ -9,10 +9,12 @@ public class LevelSystem : MonoBehaviour
     private bool hasEnoughPoints;
     private bool dayHasEnded;
     private bool hasCompletedLevel;
+    private bool hasProperStarted = false;
 
     private float COUNTDOWN_TIMER = 180f; // The length of the level => 1f = 1 second.
     private float DAY_IN_SECONDS;
     private float day;
+    private float startTimer;
     private int currentLevel = 1;
     // Level scores - ADJUST WHERE NEEDED
     private int level1Goal = 30;
@@ -28,6 +30,7 @@ public class LevelSystem : MonoBehaviour
     public GameObject UI;
     public GameObject player;
     public Transform Panel;
+    public GameObject TutorialScreen;
     private Transform clock;
     private Transform LevelCounter;
     private Transform hourHand;
@@ -54,6 +57,12 @@ public class LevelSystem : MonoBehaviour
 
     private void Update()
     {
+        if (!hasProperStarted)
+        {
+            startOfLevel();
+        }
+
+
         //currentScore = shopScript.GetMoney();
         currentScore = shopScript.GetTotalEarned();
         CheckScoreGoal();
@@ -149,6 +158,8 @@ public class LevelSystem : MonoBehaviour
 
     private void resetSettings()
     {
+        startTimer = 0f;
+        startOfLevel();
         hasCompletedLevel = false;
         dayHasEnded = false;
         hasEnoughPoints = false;
@@ -204,4 +215,14 @@ public class LevelSystem : MonoBehaviour
     {
         return COUNTDOWN_TIMER;
     }
+
+    private void startOfLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TutorialScreen.SetActive(false);
+            hasProperStarted = true;
+        }
+    }
 }
+
