@@ -16,6 +16,7 @@ public class ShopSystem : MonoBehaviour
     private Transform holdingText;
     private Transform panel;
     private Transform shopIcon;
+
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
@@ -26,7 +27,7 @@ public class ShopSystem : MonoBehaviour
     public GameObject gameManager;
 
     private bool levelIsStarting;
-    private float shopItemHeight = 50f;
+    private float shopItemHeight = 40f;
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
@@ -44,11 +45,11 @@ public class ShopSystem : MonoBehaviour
     public Sprite item5Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "Extra time";
-    private string item2Name = "Move faster";
-    private string item3Name = "Carry more plastic";
+    private string item1Name = "Extra Time";
+    private string item2Name = "Move Faster";
+    private string item3Name = "Bigger Backpack";
     private string item4Name = "Advertisements";
-    private string item5Name = "Increase plastic worth";
+    private string item5Name = "Plastic Value";
 
     //-------------------- Shop price --------------------//
     private float timePrice = 30f;
@@ -65,8 +66,8 @@ public class ShopSystem : MonoBehaviour
         // Assign the corresponding gameObject to the Transform variables.
         panel = transform.Find("Panel");
         shopIcon = panel.Find("shopIcon");
-        money = panel.Find("money");
-        totalMoneyEarned = panel.Find("totalEarned");
+        money = shopIcon.Find("money");
+        totalMoneyEarned = shopIcon.Find("totalEarned");
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
@@ -197,7 +198,7 @@ public class ShopSystem : MonoBehaviour
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + moneyCount.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
         if (Input.GetKey(KeyCode.C))
             moneyCount += 1000f;
