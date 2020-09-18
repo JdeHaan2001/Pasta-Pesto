@@ -17,11 +17,13 @@ public class ShopSystem : MonoBehaviour
     private Transform panel;
     private Transform shopIcon;
 
+    private AISpawner spawnAI;
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
     public GameObject player;
     public GameObject containerForVisibility;
+    public GameObject gameManager;
 
     private bool levelIsStarting;
     private float shopItemHeight = 40f;
@@ -30,6 +32,7 @@ public class ShopSystem : MonoBehaviour
     private float timeDecrease = 0.125f;
     private float totalEarned = 0f;
     private float clockIncrease = 45f;
+    private int maxCarry = 10;
     private int carryIncrease = 2;
     private int currentCarry;
 
@@ -68,6 +71,7 @@ public class ShopSystem : MonoBehaviour
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
+        spawnAI = gameManager.GetComponent<AISpawner>();
         puSystem = player.GetComponent<PickUpSystem>();
         plMovement = player.GetComponent<PlayerMovement>();
         lvlSystem = player.GetComponent<LevelSystem>();
@@ -147,7 +151,7 @@ public class ShopSystem : MonoBehaviour
                 case 3:
                     if (moneyCount >= carryPrice)
                     {
-                        int maxCarry = puSystem.GetMaxCarry();
+                        maxCarry = puSystem.GetMaxCarry();
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
                         moneyCount -= carryPrice;
@@ -158,7 +162,10 @@ public class ShopSystem : MonoBehaviour
                 case 4:
                     if (moneyCount >= advertPrice)
                     {
-                        Debug.Log("This item still needs to be implemented!");
+                        spawnAI.spawnGoodGuy();
+                        moneyCount -= advertPrice;
+                        advertPrice *= multiplier;
+                        shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
                     break;
                 case 5:
@@ -189,7 +196,7 @@ public class ShopSystem : MonoBehaviour
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
         totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Current goal: " + currentGoal.ToString("F2"));
-        holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
+        holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry + " / " + maxCarry);
     }
 
 
