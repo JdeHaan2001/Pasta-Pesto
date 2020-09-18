@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     public Transform AttackPoint;
     public float AttackRange = 0.5f;
     public LayerMask EnemyLayers;
+    public GameObject player;
     public LayerMask GoodGuyLayers;
 
     private Animator anim;
@@ -22,6 +23,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
@@ -42,7 +44,6 @@ public class PlayerCombat : MonoBehaviour
             shopSystem.SetMoneyAmount(6f);
             FindObjectOfType<AudioManager>().Play("Slap");
             enemy.GetComponent<Enemy>().SetIsDead();
-            Debug.Log("We hit " + enemy.name);
         }
         foreach (Collider GoodGuy in hitGoodGuy)
         {
