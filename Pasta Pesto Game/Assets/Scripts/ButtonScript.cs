@@ -15,7 +15,6 @@ public class ButtonScript : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("YOU QUIT THE GAME");
         Application.Quit();
     }
 }

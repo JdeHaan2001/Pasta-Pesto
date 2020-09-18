@@ -55,7 +55,7 @@ public class ShopSystem : MonoBehaviour
     private float timePrice = 30f;
     private float speedPrice = 10f;
     private float carryPrice = 25f;
-    private float advertPrice = 100f;
+    private float advertPrice = 15f;
     private float valuePrice = 15f;
 
     void Awake()
@@ -66,8 +66,8 @@ public class ShopSystem : MonoBehaviour
         // Assign the corresponding gameObject to the Transform variables.
         panel = transform.Find("Panel");
         shopIcon = panel.Find("shopIcon");
-        money = shopIcon.Find("money");
-        totalMoneyEarned = shopIcon.Find("totalEarned");
+        money = panel.Find("money");
+        totalMoneyEarned = panel.Find("totalEarned");
         container = panel.Find("container");
         shopItemTemplate = container.Find("shopItemTemplate");
         holdingText = panel.Find("holdingText");
@@ -133,7 +133,6 @@ public class ShopSystem : MonoBehaviour
                         float pTime = lvlSystem.GetClockTime();
                         pTime += clockIncrease;
                         lvlSystem.SetClockTime(pTime);
-                        Debug.Log("Set the clock back 3 hours!");
                         timePrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(timePrice.ToString("F2"));
                     }
@@ -145,7 +144,6 @@ public class ShopSystem : MonoBehaviour
                         pSpeed += speedIncrease;
                         plMovement.SetPlayerSpeed(pSpeed);
                         moneyCount -= speedPrice;
-                        Debug.Log("Increased the movementspeed to " + pSpeed + "!");
                         speedPrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(speedPrice.ToString("F2"));
                     }
@@ -157,7 +155,6 @@ public class ShopSystem : MonoBehaviour
                         maxCarry += carryIncrease;
                         puSystem.SetMaxCarry(maxCarry);
                         moneyCount -= carryPrice;
-                        Debug.Log("You can now hold " + maxCarry + " items!");
                         carryPrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(carryPrice.ToString("F2"));
                     }
@@ -178,7 +175,6 @@ public class ShopSystem : MonoBehaviour
                         pValue += valueIncrease;
                         puSystem.SetPlasticWorth(pValue);
                         moneyCount -= valuePrice;
-                        Debug.Log("Plastic has become more valuable! Each plastic is now worth " + pValue + "!");
                         valuePrice *= multiplier;
                         shopItemTransform.Find("costText").GetComponent<TextMeshProUGUI>().SetText(valuePrice.ToString("F2"));
                     }
@@ -198,7 +194,7 @@ public class ShopSystem : MonoBehaviour
         currentCarry = puSystem.GetCurrentCarry();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + moneyCount.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
         if (Input.GetKey(KeyCode.C))
             moneyCount += 1000f;

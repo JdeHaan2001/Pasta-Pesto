@@ -26,10 +26,13 @@ public class LevelSystem : MonoBehaviour
 
     public GameObject DayNightCycle;
     public GameObject UI;
-    public GameObject Clock;
-    private ShopSystem shopScript;
+    public GameObject player;
+    public Transform Panel;
+    private Transform clock;
+    private Transform LevelCounter;
     private Transform hourHand;
     private Transform minuteHand;
+    private ShopSystem shopScript;
     private TextMeshProUGUI clockTime;
 
     private void Awake()
@@ -39,10 +42,14 @@ public class LevelSystem : MonoBehaviour
 
         shopScript = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
+        Panel = UI.transform.Find("Panel");
+        clock = Panel.Find("Clock");
+        hourHand = clock.Find("hourHand");
+        minuteHand = clock.Find("minuteHand");
+        clockTime = clock.Find("clockTime").GetComponent<TextMeshProUGUI>();
+        LevelCounter = Panel.Find("currentLevel");
 
-        hourHand = Clock.transform.Find("hourHand");
-        minuteHand = Clock.transform.Find("minuteHand");
-        clockTime = Clock.transform.Find("clockTime").GetComponent<TextMeshProUGUI>();
+        LevelCounter.GetComponent<TextMeshProUGUI>().SetText("Level " + currentLevel.ToString());
     }
 
     private void Update()
@@ -130,6 +137,7 @@ public class LevelSystem : MonoBehaviour
                     resetSettings();
                 }
                 break;
+                
         };
     }
 
