@@ -11,6 +11,7 @@ public class ObjectSpawner : MonoBehaviour
     private int _currentObjectAmount = 0;
     [SerializeField]
     private float _timer = 0f;
+    private float animTimer = 0f;
     private Animator anim;
     private AIMovement AIMove;
 
@@ -28,19 +29,14 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         _timer += Time.deltaTime;
         if (_timer >= WaitTime)
         {
             _timer = 0f;
             if (_currentObjectAmount < maxObjectAmount)
             {
-                anim.Play("Throw", 0, 0.5f);
                 spawnTrash();
-                AIMove.SetMoveDirection(Vector3.zero);
-                if (!this.anim.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
-                {
-                    AIMove.SetMoveDirection(new Vector3(Random.Range(-1, 2) * AIMove.Speed, 0, Random.Range(-1, 2) * AIMove.Speed));
-                }
             }
         }
     }
