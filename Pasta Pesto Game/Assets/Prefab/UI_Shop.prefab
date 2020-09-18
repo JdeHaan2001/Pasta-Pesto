@@ -1741,6 +1741,7 @@ MonoBehaviour:
   multiplier: 1.15
   player: {fileID: 2363737020333079568, guid: 26cfad4030a0c454792b447afe08967e, type: 3}
   containerForVisibility: {fileID: 9019374527571295381}
+  gameManager: {fileID: 7564257859908295930, guid: ff08bcc182a5ad04f8ed18ac8c48f938, type: 3}
   item1Image: {fileID: 21300000, guid: 5e9686693951ff44194505e07861f3c7, type: 3}
   item2Image: {fileID: 21300000, guid: 6c104f938fea10c47a08b382409fa47b, type: 3}
   item3Image: {fileID: 21300000, guid: 0e0ba6ca319726e4693c070d8e6be093, type: 3}
