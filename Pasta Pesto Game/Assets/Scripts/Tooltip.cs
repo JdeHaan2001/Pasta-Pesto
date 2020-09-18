@@ -11,16 +11,14 @@ public class Tooltip : MonoBehaviour
     private TextMeshProUGUI tooltipText;
     private RectTransform backgroundRectTransform;
     private RectTransform parentRectTransform;
-    [SerializeField] private GameObject tooltipExample;
-    private Transform container;
+    [SerializeField] private GameObject container;
 
     private void Awake()
     {
         instance = this;
-        container = tooltipExample.transform.Find("container");
-        backgroundRectTransform = container.Find("background").GetComponent<RectTransform>();
-        tooltipText = container.Find("text").GetComponent<TextMeshProUGUI>();
-        parentRectTransform = transform.parent.GetComponent<RectTransform>();
+        backgroundRectTransform = container.transform.Find("background").GetComponent<RectTransform>();
+        tooltipText = container.transform.Find("text").GetComponent<TextMeshProUGUI>();
+        parentRectTransform = transform.GetComponent<RectTransform>();
 
     }
 

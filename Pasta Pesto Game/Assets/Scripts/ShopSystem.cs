@@ -16,6 +16,7 @@ public class ShopSystem : MonoBehaviour
     private Transform holdingText;
     private Transform panel;
     private Transform shopIcon;
+
     private PlayerMovement plMovement;
     private PickUpSystem puSystem;
     private LevelSystem lvlSystem;
@@ -23,7 +24,7 @@ public class ShopSystem : MonoBehaviour
     public GameObject containerForVisibility;
 
     private bool levelIsStarting;
-    private float shopItemHeight = 50f;
+    private float shopItemHeight = 40f;
     private float valueIncrease = 0.5f;
     private float speedIncrease = 0.5f;
     private float timeDecrease = 0.125f;
@@ -41,11 +42,11 @@ public class ShopSystem : MonoBehaviour
     public Sprite item5Image;
 
     //-------------------- Product Name --------------------//
-    private string item1Name = "It's rewind time";
-    private string item2Name = "Gotta go fast";
-    private string item3Name = "Increased Pockets";
+    private string item1Name = "Extra Time";
+    private string item2Name = "Move Faster";
+    private string item3Name = "Bigger Backpack";
     private string item4Name = "Advertisements";
-    private string item5Name = "Plastic Monopoly";
+    private string item5Name = "Plastic Value";
 
     //-------------------- Shop price --------------------//
     private float timePrice = 30f;
@@ -83,11 +84,11 @@ public class ShopSystem : MonoBehaviour
         // Make sure to also add the price above at (//-------------------- Shop price --------------------//)
         // Make sure to also add the index below at (//-------------------- Button-usability --------------------//)
         //-----------------------------------------------------------------------------------------
-        createItemSlot(item1Image, item1Name, timePrice.ToString(),   1);
-        createItemSlot(item2Image, item2Name, speedPrice.ToString(),  2);
-        createItemSlot(item3Image, item3Name, carryPrice.ToString(),  3);
+        createItemSlot(item1Image, item1Name, timePrice.ToString(), 1);
+        createItemSlot(item2Image, item2Name, speedPrice.ToString(), 2);
+        createItemSlot(item3Image, item3Name, carryPrice.ToString(), 3);
         createItemSlot(item4Image, item4Name, advertPrice.ToString(), 4);
-        createItemSlot(item5Image, item5Name, valuePrice.ToString(),  5);
+        createItemSlot(item5Image, item5Name, valuePrice.ToString(), 5);
 
         // Set template-shopitem to invisible.
         shopItemTemplate.gameObject.SetActive(false);
