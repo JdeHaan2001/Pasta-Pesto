@@ -9,10 +9,7 @@ public class GoodGuy : MonoBehaviour
     private Animator anim;
     private AIMovement AIMove;
 
-    private float animTimer;
-    private float pointTimer;
-
-    public float pointWaitAmount = 10f; // in seconds
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,39 +18,21 @@ public class GoodGuy : MonoBehaviour
         shopSystem = menu.GetComponent<ShopSystem>();
         anim = GetComponent<Animator>();
         AIMove = GetComponent<AIMovement>();
-
-        pointTimer = pointWaitAmount;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        handleAnimation();
-        handlePoints();
-    }
-
-    private void handlePoints()
-    {
-        pointTimer -= Time.deltaTime;
-
-        if (pointTimer <= 0f)
-        {
-            shopSystem.SetMoneyAmount(1f);
-            pointTimer = pointWaitAmount;
-        }
-    }
-
-    private void handleAnimation()
-    {
+        
         if (this.anim.GetCurrentAnimatorStateInfo(0).IsName("WrongSlap"))
         {
-            animTimer += Time.deltaTime;
+            timer += Time.deltaTime;
             AIMove.SetMoveDirection(Vector3.zero);
-            if (animTimer >= this.anim.GetCurrentAnimatorStateInfo(0).length)
+            if (timer >= this.anim.GetCurrentAnimatorStateInfo(0).length)
             {
                 AIMove.SetMoveDirection(new Vector3(Random.Range(-1, 2) * AIMove.Speed, 0, Random.Range(-1, 2) * AIMove.Speed));
                 anim.SetBool("IsSlapped", false);
-                animTimer = 0f;
+                timer = 0f;
             }
         }
     }

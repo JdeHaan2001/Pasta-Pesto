@@ -48,6 +48,8 @@ public class AISpawner : MonoBehaviour
         {
             spawnEnemy();
         }
+        
+
     }
 
     private void spawnEnemy()
