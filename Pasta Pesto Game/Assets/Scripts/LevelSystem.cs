@@ -35,7 +35,7 @@ public class LevelSystem : MonoBehaviour
     private Transform LevelCounter;
     private Transform hourHand;
     private Transform minuteHand;
-    private ShopSystem shopScript;
+    private ShopSystem shopSystem;
     private TextMeshProUGUI clockTime;
 
     private void Awake()
@@ -43,7 +43,7 @@ public class LevelSystem : MonoBehaviour
         DAY_IN_SECONDS = (COUNTDOWN_TIMER * 2);
         day += 0.375f;
 
-        shopScript = UI.GetComponent<ShopSystem>();
+        shopSystem = UI.GetComponent<ShopSystem>();
         currentGoal = level1Goal;
         Panel = UI.transform.Find("Panel");
         clock = Panel.Find("Clock");
@@ -64,7 +64,7 @@ public class LevelSystem : MonoBehaviour
 
 
         //currentScore = shopScript.GetMoney();
-        currentScore = shopScript.GetTotalEarned();
+        currentScore = shopSystem.GetTotalEarned();
         CheckScoreGoal();
         checkEndDay();
         setCurrentGoalAndLevel();
@@ -163,7 +163,7 @@ public class LevelSystem : MonoBehaviour
         hasCompletedLevel = false;
         dayHasEnded = false;
         hasEnoughPoints = false;
-        shopScript.ResetMoney();
+        shopSystem.ResetMoney();
     }
 
     public void ChangeScene(string SceneName)
@@ -206,6 +206,17 @@ public class LevelSystem : MonoBehaviour
         return day;
     }
 
+
+    public void SetCurrentGoal(int pGoal)
+    {
+        currentGoal = pGoal;
+    }
+
+    public int GetCurrentGoal()
+    {
+        return currentGoal;
+    }
+
     public void SetClockTime(float pTime)
     {
         COUNTDOWN_TIMER = pTime;
@@ -224,5 +235,8 @@ public class LevelSystem : MonoBehaviour
             hasProperStarted = true;
         }
     }
+
+
+
 }
 

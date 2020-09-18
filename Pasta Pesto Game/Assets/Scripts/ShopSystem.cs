@@ -185,9 +185,10 @@ public class ShopSystem : MonoBehaviour
         }
         GetMoney();
         currentCarry = puSystem.GetCurrentCarry();
+        int currentGoal = lvlSystem.GetCurrentGoal();
         // Update text with money-count
         money.GetComponent<TextMeshProUGUI>().SetText("Your influence: " + moneyCount.ToString("F2"));
-        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Total earned " + totalEarned.ToString("F2"));
+        totalMoneyEarned.GetComponent<TextMeshProUGUI>().SetText("Current goal: " + currentGoal.ToString("F2"));
         holdingText.GetComponent<TextMeshProUGUI>().SetText("Plastic holding: " + currentCarry);
     }
 
