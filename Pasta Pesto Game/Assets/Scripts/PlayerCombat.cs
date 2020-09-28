@@ -42,6 +42,7 @@ public class PlayerCombat : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             shopSystem.SetMoneyAmount(6f);
+            shopSystem.SetTotalEarned(6f);
             FindObjectOfType<AudioManager>().Play("Slap");
             enemy.GetComponent<Enemy>().SetIsDead();
         }
