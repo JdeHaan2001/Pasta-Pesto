@@ -303,6 +303,11 @@ MonoBehaviour:
   player: {fileID: 91196679}
   Panel: {fileID: 880822073}
   TutorialScreen: {fileID: 1679692364}
+--- !u!1 &101337257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7564257859908295930, guid: ff08bcc182a5ad04f8ed18ac8c48f938, type: 3}
+  m_PrefabInstance: {fileID: 1021801166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &115735159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2877972932503170730, guid: 9cf6bdc83c3300f4ca58abeb030ef44c, type: 3}
@@ -1924,6 +1929,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7564257859908295928, guid: ff08bcc182a5ad04f8ed18ac8c48f938, type: 3}
+      propertyPath: GoodGuyObj
+      value: 
+      objectReference: {fileID: 1025944377420364820, guid: 7f71e04ab9ca0604da98f07d5fcbef2f, type: 3}
     - target: {fileID: 7564257859908295930, guid: ff08bcc182a5ad04f8ed18ac8c48f938, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2563,6 +2572,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 91196679}
+    - target: {fileID: 9019374528887529969, guid: e4832af20a494054f808ba968ea1c585, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 101337257}
     - target: {fileID: 9019374528887529970, guid: e4832af20a494054f808ba968ea1c585, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
